@@ -1,0 +1,1396 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LPL Financial | Transition Lens</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  /* colour: one navy, two accents (Navy 800, Gray 50). Red and green only mark direction. */
+  --navy-900:#06163a;--navy-800:#405881;--gray-50:#edf1f4;
+  --page:var(--gray-50);--shell:#ffffff;--card:#ffffff;--card2:var(--gray-50);
+  --ink:var(--navy-900);--mute:var(--navy-800);--line:rgba(64,88,129,.22);
+  --brand:var(--navy-900);--accent:var(--navy-900);
+  --cta:var(--navy-900);--cta-ink:#ffffff;--sel:var(--navy-900);--sel-ink:#ffffff;
+  --hero-ink:#ffffff;--hero-mute:rgba(255,255,255,.8);
+  --gain:#17734a;--loss:#b8321e;--focus:var(--navy-900);
+  /* elevation: soft shadows */
+  --sh-sm:0 1px 2px rgba(6,22,58,.06),0 1px 1px rgba(6,22,58,.04);
+  --sh-md:0 8px 24px -8px rgba(6,22,58,.14);
+  --sh-lg:0 32px 64px -24px rgba(6,22,58,.3);
+  /* type scale */
+  --t12:12px;--t14:14px;--t16:16px;--t20:20px;--t24:24px;--t32:32px;--t36:36px;--t44:44px;
+  /* spacing: multiples of 4 */
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;
+  /* radius: xs 8, md 16, lg 24, full */
+  --r8:8px;--r16:16px;--r24:24px;--rp:999px;
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px);
+  background:radial-gradient(900px 600px at 92% -8%,rgba(64,88,129,.24),transparent 62%),radial-gradient(700px 520px at -8% 28%,rgba(64,88,129,.14),transparent 62%),var(--gray-50);
+  background-attachment:fixed}
+html.lock{overflow:hidden}
+body{margin:0;background:transparent;color:var(--ink);font-family:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:var(--t16);line-height:1.5;-webkit-font-smoothing:antialiased}
+button,select,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+h1,h2,h3,h4,p{margin:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+.pos{color:var(--gain)}.neg{color:var(--loss)}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+
+/* shell */
+.page{padding:var(--s3)}
+.shell{max-width:1280px;margin:0 auto;background:var(--shell);border-radius:var(--r24);padding:var(--s3) var(--s3) var(--s5);box-shadow:var(--sh-md)}
+@media (min-width:700px){.page{padding:var(--s5)}.shell{padding:var(--s4) var(--s5) var(--s6)}}
+@media (min-width:1024px){.shell{padding:var(--s4) var(--s6) var(--s6)}}
+main{display:grid;gap:var(--s5);margin-top:var(--s4)}
+main,.sect,.items,.item,.acc-b,.sh-b,.sum,.hero,.list,.method{grid-template-columns:minmax(0,1fr)}
+.sect>*,.sect-h>*,main>*{min-width:0}
+@media (min-width:900px){
+  main#app{grid-template-columns:minmax(0,5fr) minmax(0,6fr);align-items:stretch}
+  main#app>.hero,main#app>.wide{grid-column:1/-1}
+  main#app>.pair{display:grid;grid-template-rows:subgrid;grid-row:span 2;row-gap:var(--s3);align-self:stretch}
+}
+
+/* top bar and client band */
+.bar{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;padding:var(--s2) var(--s2) 0}
+.brand{display:flex;align-items:center;margin-right:auto}
+.logo-chip{display:flex;align-items:center;color:var(--brand)}
+.lpl-logo{height:32px;width:auto;display:block}
+@media (max-width:620px){.lpl-logo{height:24px}}
+.band{display:flex;align-items:center;justify-content:space-between;gap:var(--s4);flex-wrap:wrap;margin:var(--s4) var(--s2) 0;padding-top:var(--s4);border-top:1px solid var(--line)}
+.who{display:flex;align-items:center;gap:var(--s3);min-width:0}
+.avatar{flex:none;width:48px;height:48px;border-radius:50%;background:var(--navy-900);color:#fff;display:grid;place-items:center;font-weight:600;font-size:var(--t16);letter-spacing:.02em}
+.who-n{font-size:var(--t20);font-weight:600;line-height:1.2;letter-spacing:-.01em}
+.who-m{font-size:var(--t14);color:var(--mute)}
+.band-r{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
+.status{display:inline-flex;align-items:center;gap:var(--s2);font-size:var(--t14);font-weight:600;padding:var(--s1) var(--s3);border-radius:var(--rp);background:var(--gray-50);color:var(--navy-800)}
+.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--navy-800)}
+.bdate{font-size:var(--t14);color:var(--mute)}
+.client select{appearance:none;-webkit-appearance:none;background:var(--card);border:1px solid var(--line);border-radius:var(--rp);padding:var(--s2) var(--s7) var(--s2) var(--s4);min-height:44px;font-weight:600;max-width:100%;box-shadow:var(--sh-sm);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23405881' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+@media (max-width:620px){.client{flex:1 1 100%}.client select{width:100%}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);border-radius:var(--rp);border:1px solid var(--line);background:var(--card);padding:var(--s2) var(--s5);font-weight:600;min-height:44px;box-shadow:var(--sh-sm);transition:background .15s,transform .05s,box-shadow .15s}
+.btn:hover{background:var(--gray-50)}
+.btn:active{transform:translateY(1px)}
+.btn.lime{background:var(--cta);color:var(--cta-ink);border:2px solid transparent;font-weight:600}
+.btn.lime:hover{background:var(--navy-800)}
+.btn.lg{padding:var(--s3) var(--s6);font-size:var(--t16);min-height:52px}
+.ibtn{width:44px;height:44px;padding:0}
+@media (max-width:620px){.btn .lbl{display:none}.bar .btn{width:44px;padding:0}}
+.linkbtn{border:0;background:transparent;text-decoration:underline;padding:0;color:inherit;font-size:inherit}
+
+/* hero: the answer */
+.hero{position:relative;border-radius:var(--r24);padding:var(--s5);color:var(--hero-ink);display:grid;gap:var(--s3);overflow:hidden;
+  background:radial-gradient(80% 120% at 100% 0%,rgba(255,255,255,.16),transparent 56%),linear-gradient(150deg,var(--navy-800) -30%,var(--navy-900) 62%);
+  box-shadow:var(--sh-lg),inset 0 1px 0 rgba(255,255,255,.2);transition:opacity .15s}
+.hero-main{display:grid;gap:var(--s2);grid-template-columns:minmax(0,1fr);align-content:center}
+.hero-viz{min-width:0}
+.hero-viz svg{width:100%;height:auto;max-height:150px;display:block;overflow:visible}
+@media (min-width:900px){main#app>.hero{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:center;column-gap:var(--s7)}}
+.hero-h{font-family:'Newsreader','Iowan Old Style','Palatino Linotype',Georgia,'Times New Roman',serif;font-weight:500;letter-spacing:-.015em;font-optical-sizing:auto;font-variant-numeric:lining-nums;font-size:var(--t32);line-height:1.1;max-width:22ch}
+.hero-h em{font-style:italic;font-weight:500}
+@media (min-width:1600px){.hero-h{font-size:var(--t36)}}
+.hero-s{color:var(--hero-mute);max-width:56ch}
+.rec{display:block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);border-radius:var(--r16);padding:var(--s3) var(--s4);max-width:56ch;font-size:var(--t16)}
+.rec b{font-weight:600}
+.hero .act{display:flex;gap:var(--s4);flex-wrap:wrap;align-items:center;margin-top:var(--s2)}
+.rec-i{font-size:var(--t14);color:var(--hero-mute);max-width:40ch}
+.rec-i b{color:#fff;font-weight:600}
+.hero .btn.lime{background:#fff;color:var(--navy-900)}
+.hero .btn.lime:hover{background:var(--navy-800);color:#fff}
+html.busy .hero,html.busy .evidence{opacity:.55}
+.draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s ease-out .1s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* sections */
+.sect{display:grid;gap:var(--s4)}
+.sect-h{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--s3);flex-wrap:wrap;min-height:44px}
+.sect-head{display:grid;gap:var(--s2);align-content:start}
+.sect-body{display:flex;flex-direction:column;gap:var(--s3);min-width:0}
+.sect-body>.card{flex:1;align-content:space-between}
+.sect-body>.items{flex:1;grid-auto-rows:1fr}
+.sect h2,.sh-h h2,.sum h3{font-family:'Newsreader','Iowan Old Style','Palatino Linotype',Georgia,'Times New Roman',serif;font-weight:500;letter-spacing:-.015em;font-optical-sizing:auto;font-variant-numeric:lining-nums}
+.sect h2{font-size:var(--t32);line-height:1.1}
+@media (max-width:560px){.sect h2{font-size:var(--t24)}}
+.lede{color:var(--mute);font-size:var(--t14);max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r24);padding:var(--s5);box-shadow:var(--sh-sm)}
+.alert{display:flex;gap:var(--s3);align-items:flex-start;border-radius:var(--r16);padding:var(--s3) var(--s4);background:var(--gray-50);border:1px solid var(--line);font-size:var(--t14);font-weight:500}
+.alert::before{content:"i";flex:none;width:20px;height:20px;border-radius:50%;background:var(--navy-900);color:#fff;font:italic 700 12px/20px Georgia,serif;text-align:center}
+
+/* holdings */
+.items{display:grid;gap:var(--s3)}
+.item{background:var(--card);border:1px solid var(--line);border-radius:var(--r24);padding:var(--s4) var(--s5);display:grid;gap:var(--s3);align-content:space-between;box-shadow:var(--sh-sm)}
+.item-h{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s3)}
+.item-h h3{font-size:var(--t20);font-weight:600;letter-spacing:-.01em}
+.amt{font-weight:600}
+.item-d,.item-n{color:var(--mute);font-size:var(--t14);max-width:64ch}
+.seg-group{border:0;margin:0;padding:0;min-width:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:1fr;gap:var(--s2)}
+@media (max-width:560px){.seg-group{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.opt{position:relative;min-width:0;display:flex}
+.opt small{white-space:nowrap}
+.opt input{position:absolute;inset:0;opacity:0;margin:0;cursor:pointer;width:100%;height:100%}
+.opt span{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;min-height:64px;padding:var(--s2);border-radius:var(--r16);border:1.5px solid var(--line);background:var(--card);font-weight:600;text-align:center;transition:background .15s,border-color .15s}
+.opt:hover span{background:var(--gray-50)}
+.opt small{font-size:var(--t12);font-weight:600;color:var(--mute)}
+.opt small.pos{color:var(--gain)}.opt small.neg{color:var(--loss)}
+.opt input:checked+span{background:var(--sel);border-color:var(--sel);color:var(--sel-ink)}
+.opt input:checked+span small{color:inherit;opacity:.85}
+.opt input:focus-visible+span{outline:2px solid var(--focus);outline-offset:2px}
+.seg-group.sm{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.seg-group.sm .opt span{min-height:40px;padding:var(--s1) var(--s4);font-size:var(--t14)}
+
+/* evidence */
+.pills{display:flex;gap:var(--s2);align-items:center;flex-wrap:wrap}
+.pills .l{color:var(--mute);font-size:var(--t14);margin-right:var(--s1)}
+.pill{border:1.5px solid var(--line);background:var(--card);border-radius:var(--rp);padding:var(--s2) var(--s4);font-weight:600;min-height:40px}
+.pill:hover{background:var(--gray-50)}
+.pill[aria-pressed="true"]{background:var(--sel);border-color:var(--sel);color:var(--sel-ink)}
+.age-other{display:flex;align-items:center;gap:var(--s2);margin-left:var(--s2)}
+.age-other .l{color:var(--mute);font-size:var(--t14)}
+.age-in{width:84px;min-height:40px;border:1.5px solid var(--line);border-radius:var(--rp);background:var(--card);padding:var(--s1) var(--s3);font-weight:600;text-align:center}
+.age-in:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.age-in.on{background:var(--sel);border-color:var(--sel);color:var(--sel-ink)}
+.age-in.on::placeholder{color:var(--sel-ink)}
+.legend{display:flex;gap:var(--s4);flex-wrap:wrap;font-size:var(--t14);color:var(--mute)}
+.legend i{display:inline-block;width:20px;height:4px;border-radius:2px;margin-right:var(--s2);vertical-align:middle}
+#chart{width:100%;height:auto;display:block;touch-action:pan-y}
+.read{min-height:24px;font-size:var(--t14);color:var(--mute)}
+
+/* tables */
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:var(--t14)}
+th,td{padding:var(--s3);text-align:right;white-space:nowrap;border-bottom:1px solid var(--line)}
+th:first-child,td:first-child{text-align:left;padding-left:0}
+th{font-weight:600;color:var(--mute);font-size:var(--t12)}
+tbody tr:last-child td{border-bottom:0}
+td.plan,th.plan{background:var(--gray-50)}
+.facts{font-size:var(--t16)}
+.facts td:first-child{white-space:normal;width:42%}
+.facts td{padding-top:var(--s2);padding-bottom:var(--s2)}
+.facts small{display:block;color:var(--mute);font-size:var(--t12)}
+
+/* accordions */
+.acc{background:var(--card);border:1px solid var(--line);border-radius:var(--r24);padding:0 var(--s5);box-shadow:var(--sh-sm)}
+.acc>summary{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);cursor:pointer;list-style:none;min-height:64px;font-weight:600;font-size:var(--t20);letter-spacing:-.01em}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary::after{content:"";width:10px;height:10px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:rotate(45deg);margin:-4px 4px 0 var(--s2);flex:none;transition:transform .15s}
+.acc[open]>summary::after{transform:rotate(-135deg);margin-top:4px}
+.acc>summary>span:first-child{margin-right:auto}
+.acc-r{color:var(--mute);font-weight:500;font-size:var(--t14);text-align:right}
+.acc-b{padding:0 0 var(--s5);display:grid;gap:var(--s4)}
+.list{display:grid;gap:var(--s3)}
+.list div{display:flex;justify-content:space-between;gap:var(--s4)}
+.list .tot{border-top:1px solid var(--line);padding-top:var(--s3);font-weight:600}
+.note{border-radius:var(--r16);padding:var(--s3) var(--s4);background:var(--gray-50);font-size:var(--t14);color:var(--mute)}
+.h4{font-weight:600;font-size:var(--t16)}
+footer{margin:var(--s5) var(--s2) 0;padding-top:var(--s4);border-top:1px solid var(--line);color:var(--mute);font-size:var(--t12);display:grid;gap:var(--s2)}
+footer p{max-width:90ch}
+
+/* glass panels: assumptions and client proposal */
+#scrim{position:fixed;inset:0;z-index:40;background:rgba(6,22,58,.34);backdrop-filter:blur(10px) saturate(1.1);-webkit-backdrop-filter:blur(10px) saturate(1.1);opacity:0;transition:opacity .28s}
+#scrim.in{opacity:1}
+#sheet{position:fixed;top:var(--s4);right:var(--s4);bottom:var(--s4);z-index:50;width:min(640px,calc(100% - 32px));border-radius:var(--r24);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;
+  background:rgba(255,255,255,.7);backdrop-filter:blur(36px) saturate(1.6);-webkit-backdrop-filter:blur(36px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.8);box-shadow:var(--sh-lg),inset 0 1px 0 rgba(255,255,255,.9);
+  transform:translateX(32px) scale(.985);opacity:0;transition:transform .3s cubic-bezier(.2,.8,.2,1),opacity .25s}
+#sheet.in{transform:none;opacity:1}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){#sheet{background:rgba(255,255,255,.97)}}
+@media (max-width:560px){#sheet{top:var(--s2);right:var(--s2);bottom:var(--s2);width:calc(100% - 16px)}}
+.sh-h{display:flex;justify-content:space-between;align-items:flex-start;gap:var(--s3);padding:var(--s5) var(--s5) var(--s3)}
+.sh-h h2{font-size:var(--t32);line-height:1.1}
+.sh-sub{color:var(--mute);font-size:var(--t14);margin-top:var(--s1)}
+.sh-b{overflow-y:auto;padding:0 var(--s5) var(--s5);display:grid;gap:var(--s3);align-content:start}
+.live{border-radius:var(--r16);padding:var(--s3) var(--s4);background:linear-gradient(150deg,rgba(64,88,129,.96),rgba(6,22,58,.97));color:var(--hero-ink);display:grid;gap:2px;box-shadow:var(--sh-md);position:relative}
+.live b{font-size:var(--t20);font-weight:600}
+.live span{color:var(--hero-mute);font-size:var(--t14)}
+.live .stat{position:absolute;top:var(--s3);right:var(--s4);font-size:var(--t12);display:flex;align-items:center;gap:var(--s2)}
+.live .stat::before{content:"";width:8px;height:8px;border-radius:50%;background:#fff}
+.live .stat::after{content:"Up to date"}
+html.busy .live .stat::after{content:"Recalculating"}
+html.busy .live .stat::before{opacity:.5}
+.flds{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 var(--s4)}
+@media (max-width:520px){.flds{grid-template-columns:minmax(0,1fr)}}
+.fld{display:grid;grid-template-rows:subgrid;grid-row:span 3;align-content:start}
+.fld>span{display:block;font-size:var(--t14);font-weight:600;margin-bottom:var(--s1)}
+.fld small{display:block;color:var(--mute);font-size:var(--t12);margin-top:var(--s1);padding-bottom:var(--s3);min-height:1px}
+.inp{display:flex;align-items:center;background:rgba(255,255,255,.85);border:1.5px solid var(--line);border-radius:var(--r16);padding:0 var(--s3);min-height:48px}
+.inp:focus-within{border-color:var(--focus)}
+.inp input,.inp select{flex:1;min-width:0;border:0;background:transparent;padding:var(--s3) 0;outline:0}
+.inp em{font-style:normal;color:var(--mute);margin-left:var(--s2);font-size:var(--t14)}
+.sw{display:flex;align-items:flex-start;gap:var(--s3);padding:var(--s2) 0}
+.sw input{width:24px;height:24px;margin-top:0;accent-color:var(--sel)}
+.derived{display:grid;grid-template-columns:repeat(auto-fit,minmax(136px,1fr));gap:var(--s2)}
+.derived div{background:rgba(237,241,244,.8);border-radius:var(--r16);padding:var(--s2) var(--s3);font-size:var(--t12);color:var(--mute)}
+.derived b{display:block;color:var(--ink);font-size:var(--t16)}
+.msg{border-radius:var(--r8);padding:var(--s2) var(--s3);font-size:var(--t14);background:rgba(255,255,255,.16);color:#fff;margin-top:var(--s2)}
+.sh-b .acc{background:rgba(255,255,255,.66);border:1px solid rgba(255,255,255,.85);box-shadow:var(--sh-sm)}
+.sh-b .acc>summary{font-size:var(--t16)}
+.sh-b .acc>summary>span:first-child{white-space:nowrap}
+.sub-acc{border:1px solid var(--line);border-radius:var(--r16);padding:0 var(--s4);background:rgba(237,241,244,.7);margin-top:var(--s2)}
+.sub-acc>summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:600;list-style:none}
+.sub-acc>summary::-webkit-details-marker{display:none}
+.sub-acc .flds{padding:0 0 var(--s4)}
+.method{color:var(--mute);font-size:var(--t14);display:grid;gap:var(--s2)}
+.method b{color:var(--ink)}
+
+/* client proposal document */
+.sum{background:#fff;border:1px solid var(--line);border-radius:var(--r16);padding:var(--s6);display:grid;gap:var(--s5);font-size:var(--t16);user-select:text;box-shadow:var(--sh-sm)}
+.paper-h{display:flex;justify-content:space-between;align-items:center;gap:var(--s4);padding-bottom:var(--s4);border-bottom:1px solid var(--line)}
+.paper-logo{color:var(--navy-900);display:flex}
+.paper-logo svg{height:24px;width:auto}
+.paper-d{font-size:var(--t14);color:var(--mute)}
+.sum h3{font-size:var(--t32);line-height:1.1}
+.sum h4{font-size:var(--t14);font-weight:600;color:var(--mute);margin:0 0 var(--s2)}
+.sum p{max-width:62ch}
+.sum ul{margin:0;padding-left:var(--s5);display:grid;gap:var(--s2)}
+.rec-t{font-size:var(--t20);font-weight:500;line-height:1.3;letter-spacing:-.01em}
+.fine{font-size:var(--t12);color:var(--mute)}
+.btnrow{display:flex;gap:var(--s3);flex-wrap:wrap}
+#toast{position:fixed;left:50%;bottom:calc(var(--s5) + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:60;background:var(--navy-900);color:#fff;border-radius:var(--rp);padding:var(--s3) var(--s5);font-weight:600;font-size:var(--t14);opacity:0;pointer-events:none;transition:opacity .2s;max-width:calc(100% - 32px);box-shadow:var(--sh-lg)}
+#toast.on{opacity:1}
+@media (max-width:560px){
+  .live .stat{position:static;order:-1;margin-bottom:var(--s1)}
+  .sh-b .acc-r{display:none}
+  .sh-b{padding:0 var(--s4) var(--s4)}
+  .sh-h{padding:var(--s4) var(--s4) var(--s3)}
+}
+@media (prefers-reduced-motion: reduce){
+  .draw{animation:none;stroke-dashoffset:0}
+  #sheet,#scrim{transition:none;transform:none}
+  .hero,.btn,.opt span,.acc>summary::after{transition:none}
+}
+
+/* client switcher with portraits */
+.cswitch{position:relative}
+.cbtn{display:flex;align-items:center;gap:var(--s3);background:var(--card);border:1px solid var(--line);border-radius:var(--rp);padding:var(--s1) var(--s5) var(--s1) var(--s1);min-height:48px;box-shadow:var(--sh-sm);text-align:left;position:relative}
+.cbtn:hover{background:var(--gray-50)}
+.cbtn::after{content:"";position:absolute;right:16px;top:50%;width:8px;height:8px;border-right:2px solid var(--mute);border-bottom:2px solid var(--mute);transform:translateY(-70%) rotate(45deg)}
+.av{flex:none;width:40px;height:40px;border-radius:50%;overflow:hidden;display:block;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--line)}
+.av svg{width:100%;height:100%;display:block}
+.ct{display:grid;line-height:1.2;margin-right:var(--s2)}
+.cn{font-weight:600;font-size:var(--t14)}
+.cm{font-size:var(--t12);color:var(--mute)}
+.clist{position:absolute;top:calc(100% + var(--s2));left:0;min-width:300px;z-index:30;margin:0;padding:var(--s2);list-style:none;border-radius:var(--r16);background:rgba(255,255,255,.84);backdrop-filter:blur(24px) saturate(1.5);-webkit-backdrop-filter:blur(24px) saturate(1.5);border:1px solid rgba(255,255,255,.9);box-shadow:var(--sh-lg);display:grid;gap:var(--s1)}
+.clist li{display:flex;align-items:center;gap:var(--s3);padding:var(--s2) var(--s3);border-radius:var(--r16);cursor:pointer}
+.clist li:hover,.clist li:focus-visible,.clist li[aria-selected="true"]{background:var(--gray-50)}
+.clist li:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+@media (max-width:620px){.cswitch{flex:1 1 100%;order:5}.cbtn{width:100%}.clist{min-width:100%}}
+.hero-meta{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap;font-size:var(--t14);color:var(--hero-mute)}
+.hero .status{background:rgba(255,255,255,.14);color:#fff}
+.hero .status::before{background:#fff}
+.paper-t{display:flex;align-items:center;gap:var(--s4)}
+.paper-t .av{width:56px;height:56px}
+.item-t{display:flex;align-items:center;gap:var(--s2);flex-wrap:wrap;min-width:0}
+.item-h{align-items:center}
+.tag{display:inline-flex;align-items:center;padding:2px var(--s2);border-radius:var(--rp);font-size:var(--t12);font-weight:600;background:var(--gray-50);color:var(--navy-800)}
+/* rounded, symmetrical highlights */
+table{border-collapse:separate;border-spacing:0}
+td.plan,th.plan{padding-left:var(--s4);padding-right:var(--s4)}
+th.plan{border-radius:var(--r16) var(--r16) 0 0}
+tbody tr:last-child td.plan{border-radius:0 0 var(--r16) var(--r16)}
+.delta{display:block;width:fit-content;margin:var(--s1) 0 0 auto;padding:2px var(--s2);border-radius:var(--rp);font-size:var(--t12);font-weight:600;background:var(--gray-50)}
+.delta.pos{background:rgba(23,115,74,.12)}.delta.neg{background:rgba(184,50,30,.1)}
+tr.hl td{background:var(--gray-50);border-bottom-color:transparent}
+tr.hl td:first-child{border-radius:var(--r16) 0 0 var(--r16);padding-left:var(--s3)}
+tr.hl td:last-child{border-radius:0 var(--r16) var(--r16) 0;padding-right:var(--s3)}
+.wrapfirst td:first-child{white-space:normal;min-width:200px}
+.wrapfirst small{display:block;color:var(--mute);font-size:var(--t12)}
+.bul{margin:0;padding-left:var(--s5);display:grid;gap:var(--s2);font-size:var(--t14)}
+@media (min-width:900px) and (max-width:1100px){.opt span{font-size:var(--t14)}}
+/* compact hero: headline left, recommendation right, so the chart and controls share the first screen */
+.hero{padding:var(--s5) var(--s5)}
+.hero-side{display:grid;gap:var(--s3);justify-items:start;align-content:center}
+.hero-side .rec-i{display:block;max-width:44ch}
+.hero-h{max-width:26ch}
+@media (min-width:900px){main#app>.hero{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:var(--s7);padding:var(--s5) var(--s6)}}
+@media (min-width:1024px){.hero-h{font-size:var(--t36);line-height:1.08}}
+.ev-card{display:flex;flex-direction:column;gap:var(--s4);align-content:normal}
+.ev-card>.scroll:last-child{margin-top:auto}
+.ev-top{display:flex;justify-content:space-between;align-items:center;gap:var(--s3);flex-wrap:wrap}
+.hstats{display:flex;gap:var(--s2);flex-wrap:wrap;margin-top:var(--s2)}
+.hstat{display:grid;gap:2px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);border-radius:var(--r16);padding:var(--s2) var(--s3)}
+.hstat small{font-size:var(--t12);color:var(--hero-mute)}
+.hstat b{font-size:var(--t16);font-weight:600;color:#fff}
+@media (min-width:900px){main#app>.hero{padding:var(--s6)}}
+@media (min-width:1360px){.hero-h{font-size:var(--t44)}}
+@media (max-width:560px){.hstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}.hstat{padding:var(--s2)}.hstat small{font-size:var(--t12)}.hstat b{font-size:var(--t14)}}
+/* v8: calmer verdict card: draft flag in the corner, one row of four equal boxes */
+@media (min-width:900px){main#app>.hero{grid-template-columns:minmax(0,1fr);column-gap:0}}
+.hero{gap:var(--s5)}
+.hero-flag{position:absolute;top:var(--s4);right:var(--s4)}
+.hero-main{max-width:72ch;gap:var(--s3)}
+.hero-main .rec-i{font-size:var(--t16);color:#fff;max-width:none}
+.hero-main{max-width:none}
+.hero-h,.hero-s{max-width:64ch}
+.hrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s3);align-items:stretch}
+.hrow .hstat{min-height:72px;align-content:center;justify-items:start}
+.hrow .hbtn{width:100%;min-height:72px;border-radius:var(--r16);padding:var(--s2) var(--s4);white-space:normal;text-align:center;line-height:1.25;font-size:var(--t16)}
+/* v9: compact chips grouped on the left, action button on the right */
+.hrow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:flex-start;gap:var(--s3)}
+.hrow .hstat{flex:none;min-height:56px;padding:var(--s2) var(--s4);align-content:center}
+.hrow .hbtn{flex:none;width:auto;min-height:56px;margin-left:auto;padding:var(--s2) var(--s5);white-space:nowrap}
+@media (max-width:700px){.hero-flag{position:static;justify-self:start}.hrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.hrow .hstat{padding:var(--s2) var(--s3)}.hrow .hstat:nth-child(3){grid-column:1/-1}.hrow .hbtn{grid-column:1/-1;margin-left:0;width:100%}}
+.foot-row{display:flex;justify-content:space-between;align-items:center;gap:var(--s2) var(--s5);flex-wrap:wrap}
+.foot-links{display:flex;gap:var(--s5);flex-wrap:wrap}
+.foot-links .linkbtn{color:var(--navy-900);font-weight:600;text-decoration:none}
+.foot-links .linkbtn:hover{text-decoration:underline}
+@media (max-width:560px){.foot-links{gap:var(--s4)}}
+/* v12: frosted glass, used sparingly: the evidence card and the hero key figures */
+main#app{position:relative;isolation:isolate}
+.ev-card{background:linear-gradient(160deg,rgba(255,255,255,.8),rgba(255,255,255,.5));backdrop-filter:blur(24px) saturate(1.4);-webkit-backdrop-filter:blur(24px) saturate(1.4);
+  border:1px solid rgba(64,88,129,.26);box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.95)}
+.ev-card th.plan,.ev-card td.plan{background:rgba(64,88,129,.1)}
+.hstat{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){.ev-card{background:#fff}}
+/* headline figure: upright and semibold, not italic */
+.hero-h em{font-style:normal;font-weight:600}
+</style>
+</head>
+<body>
+<div class="page">
+ <div class="shell">
+  <header class="bar">
+    <div class="brand"><span class="logo-chip"><svg class="lpl-logo" viewBox="3.5 0 497 63.5" width="235" height="30" role="img" aria-label="LPL Financial" xmlns="http://www.w3.org/2000/svg"><defs>
+<clipPath id="lpl-clip-0">
+<path clip-rule="nonzero" d="M 3.832031 0 L 67 0 L 67 63 L 3.832031 63 Z M 3.832031 0 "/>
+</clipPath>
+<clipPath id="lpl-clip-1">
+<path clip-rule="nonzero" d="M 89 12 L 500.167969 12 L 500.167969 63.039062 L 89 63.039062 Z M 89 12 "/>
+</clipPath>
+</defs>
+<g clip-path="url(#lpl-clip-0)">
+<path fill-rule="nonzero" fill="currentColor" fill-opacity="1" d="M 66.183594 0 L 3.832031 0.0117188 L 3.832031 12.8125 L 53.378906 12.8125 L 53.378906 62.394531 L 66.183594 62.394531 Z M 3.832031 22.832031 L 3.832031 35.640625 L 30.550781 35.640625 L 30.550781 62.394531 L 43.359375 62.394531 L 43.359375 22.832031 Z M 3.832031 62.394531 L 20.445312 62.394531 L 20.445312 45.738281 L 3.832031 45.738281 Z M 3.832031 62.394531 "/>
+</g>
+<g clip-path="url(#lpl-clip-1)">
+<path fill-rule="nonzero" fill="currentColor" fill-opacity="1" d="M 274.230469 27.613281 L 263.027344 27.613281 L 263.027344 30.253906 L 267.984375 31.476562 L 267.984375 58.527344 L 263.027344 59.753906 L 263.027344 62.390625 L 279.191406 62.390625 L 279.191406 59.753906 L 274.230469 58.527344 Z M 223.800781 18.789062 L 229.855469 20.140625 L 229.855469 58.074219 L 223.800781 59.625 L 223.800781 62.390625 L 243.832031 62.390625 L 243.832031 59.304688 L 236.296875 58.074219 L 236.296875 41.203125 L 247.054688 41.203125 L 248.148438 47.773438 L 251.429688 47.773438 L 251.429688 30.769531 L 248.148438 30.769531 L 247.054688 37.339844 L 236.296875 37.339844 L 236.296875 19.753906 L 254.523438 19.753906 L 256.582031 29.800781 L 260.0625 29.800781 L 260.0625 16.019531 L 223.800781 16.019531 Z M 439.171875 21.234375 C 440.417969 21.234375 441.40625 20.882812 442.140625 20.175781 C 442.867188 19.464844 443.230469 18.488281 443.230469 17.242188 C 443.230469 16 442.867188 15.011719 442.140625 14.28125 C 441.40625 13.550781 440.417969 13.183594 439.171875 13.183594 C 437.929688 13.183594 436.953125 13.550781 436.242188 14.28125 C 435.535156 15.011719 435.183594 16 435.183594 17.242188 C 435.183594 18.488281 435.535156 19.464844 436.242188 20.175781 C 436.953125 20.882812 437.929688 21.234375 439.171875 21.234375 M 151.859375 16.019531 L 130.539062 16.019531 L 130.539062 18.789062 L 135.949219 20.144531 L 135.949219 58.269531 L 130.539062 59.625 L 130.539062 62.390625 L 148.511719 62.390625 L 148.511719 59.625 L 142.390625 58.269531 L 142.390625 44.167969 L 151.796875 44.167969 C 161.539062 44.167969 166.417969 37.027344 166.417969 29.800781 C 166.417969 24.507812 162.84375 16.019531 151.859375 16.019531 M 150.378906 40.429688 L 142.390625 40.429688 L 142.390625 19.753906 L 150.117188 19.753906 C 155.382812 19.753906 159.332031 23.242188 159.332031 30.191406 C 159.332031 36.902344 155.933594 40.429688 150.378906 40.429688 M 119.722656 58.527344 L 102.203125 58.527344 L 102.203125 20.144531 L 108.902344 18.789062 L 108.902344 16.019531 L 89.707031 16.019531 L 89.707031 18.789062 L 95.761719 20.144531 L 95.761719 58.269531 L 89.707031 59.621094 L 89.707031 62.390625 L 125.453125 62.390625 L 125.453125 47.386719 L 121.910156 47.386719 Z M 271.078125 21.234375 C 272.320312 21.234375 273.308594 20.882812 274.039062 20.175781 C 274.765625 19.464844 275.132812 18.488281 275.132812 17.242188 C 275.132812 16 274.765625 15.011719 274.039062 14.28125 C 273.308594 13.550781 272.320312 13.183594 271.078125 13.183594 C 269.828125 13.183594 268.855469 13.550781 268.144531 14.28125 C 267.4375 15.011719 267.082031 16 267.082031 17.242188 C 267.082031 18.488281 267.4375 19.464844 268.144531 20.175781 C 268.855469 20.882812 269.828125 21.234375 271.078125 21.234375 M 198.554688 58.527344 L 181.035156 58.527344 L 181.035156 20.144531 L 187.734375 18.789062 L 187.734375 16.019531 L 168.539062 16.019531 L 168.539062 18.789062 L 174.59375 20.144531 L 174.59375 58.269531 L 168.539062 59.621094 L 168.539062 62.390625 L 204.285156 62.390625 L 204.285156 47.386719 L 200.746094 47.386719 Z M 477.207031 58.042969 C 476.925781 57.25 476.789062 55.78125 476.789062 53.632812 L 476.789062 44.292969 C 476.789062 37.511719 475.457031 32.789062 472.792969 30.125 C 470.691406 28.019531 467.8125 26.96875 464.164062 26.96875 C 459.222656 26.96875 451.796875 29.351562 451.796875 35.34375 C 451.796875 37.550781 453.019531 39.269531 455.339844 39.269531 C 457.582031 39.269531 459.007812 37.742188 459.007812 35.792969 C 459.007812 34.707031 458.484375 33.125 457.273438 32.1875 C 458.15625 30.472656 460.316406 29.800781 462.488281 29.800781 C 466.929688 29.800781 469.800781 31.867188 470.347656 42.429688 C 462.585938 43.839844 450.058594 45.425781 450.058594 54.855469 C 450.058594 59.175781 452.445312 63.039062 458.753906 63.039062 C 465.019531 63.039062 468.871094 59.449219 471.121094 56.015625 L 471.378906 56.015625 C 471.378906 60.816406 471.796875 63.039062 474.726562 63.039062 C 476.441406 63.039062 478.847656 62.414062 481.941406 61.171875 L 481.941406 59.238281 L 479.042969 59.238281 C 478.097656 59.238281 477.484375 58.839844 477.207031 58.042969 M 469.226562 54.691406 C 467.464844 57.832031 464.121094 59.300781 461.457031 59.300781 C 458.757812 59.300781 456.691406 57.5625 456.691406 53.503906 C 456.691406 47.339844 462.339844 46.082031 470.285156 44.359375 C 470.828125 48.761719 470.597656 52.246094 469.226562 54.691406 M 495.207031 58.527344 L 495.207031 12.15625 L 484 12.15625 L 484 14.796875 L 488.960938 16.019531 L 488.960938 58.527344 L 484 59.753906 L 484 62.390625 L 500.167969 62.390625 L 500.167969 59.753906 Z M 442.332031 27.613281 L 431.121094 27.613281 L 431.121094 30.253906 L 436.082031 31.476562 L 436.082031 58.527344 L 431.121094 59.753906 L 431.121094 62.390625 L 447.292969 62.390625 L 447.292969 59.753906 L 442.332031 58.527344 Z M 351.613281 58.042969 C 351.335938 57.25 351.195312 55.78125 351.195312 53.632812 L 351.195312 44.292969 C 351.195312 37.511719 349.863281 32.789062 347.203125 30.125 C 345.101562 28.019531 342.222656 26.96875 338.570312 26.96875 C 333.632812 26.96875 326.207031 29.351562 326.207031 35.34375 C 326.207031 37.550781 327.425781 39.269531 329.75 39.269531 C 331.992188 39.269531 333.417969 37.742188 333.417969 35.792969 C 333.417969 34.707031 332.894531 33.125 331.679688 32.1875 C 332.566406 30.472656 334.726562 29.800781 336.898438 29.800781 C 341.339844 29.800781 344.210938 31.867188 344.757812 42.429688 C 336.996094 43.839844 324.46875 45.425781 324.46875 54.855469 C 324.46875 59.175781 326.851562 63.039062 333.164062 63.039062 C 339.425781 63.039062 343.28125 59.449219 345.527344 56.015625 L 345.785156 56.015625 C 345.785156 60.816406 346.207031 63.039062 349.136719 63.039062 C 350.851562 63.039062 353.257812 62.414062 356.351562 61.171875 L 356.351562 59.238281 L 353.453125 59.238281 C 352.507812 59.238281 351.894531 58.839844 351.613281 58.042969 M 343.636719 54.691406 C 341.871094 57.832031 338.53125 59.300781 335.867188 59.300781 C 333.167969 59.300781 331.101562 57.5625 331.101562 53.503906 C 331.101562 47.339844 336.75 46.082031 344.695312 44.359375 C 345.234375 48.761719 345.007812 52.246094 343.636719 54.691406 M 316.613281 44.292969 C 316.613281 31.582031 314.398438 26.96875 306.308594 26.96875 C 300.257812 26.96875 296.207031 30.554688 294.070312 34.054688 L 293.8125 34.054688 L 292.390625 27.613281 L 283.121094 27.613281 L 283.121094 30.253906 L 288.078125 31.480469 L 288.078125 58.527344 L 283.121094 59.753906 L 283.121094 62.390625 L 298.640625 62.390625 L 298.640625 59.753906 L 294.324219 58.527344 L 294.324219 41.332031 C 294.324219 34.683594 299.195312 31.542969 303.664062 31.542969 C 309.925781 31.542969 310.363281 36.328125 310.363281 44.164062 L 310.363281 58.527344 L 306.046875 59.753906 L 306.046875 62.390625 L 321.570312 62.390625 L 321.570312 59.753906 L 316.613281 58.527344 Z M 416.054688 58.722656 C 409.820312 58.722656 405.941406 54.464844 405.941406 44.421875 C 405.941406 33.234375 410.222656 30.253906 416.054688 30.253906 C 419.574219 30.253906 421.957031 31.433594 423.203125 33.796875 C 422.214844 34.097656 419.980469 35.328125 419.980469 38.175781 C 419.980469 41.023438 421.871094 41.976562 423.914062 41.976562 C 426.570312 41.976562 427.902344 40.324219 427.902344 37.015625 C 427.902344 30.21875 422.386719 26.96875 415.664062 26.96875 C 408.441406 26.96875 399.179688 31.253906 399.179688 45.390625 C 399.179688 57.996094 406.230469 63.035156 414.507812 63.035156 C 422.789062 63.035156 426.570312 57.972656 428.289062 55.308594 L 426.359375 53.761719 C 424.023438 56.621094 420.265625 58.722656 416.054688 58.722656 M 392.414062 44.292969 C 392.414062 31.582031 390.207031 26.96875 382.109375 26.96875 C 376.0625 26.96875 372.015625 30.554688 369.875 34.054688 L 369.617188 34.054688 L 368.199219 27.613281 L 358.925781 27.613281 L 358.925781 30.253906 L 363.882812 31.480469 L 363.882812 58.527344 L 358.925781 59.753906 L 358.925781 62.390625 L 374.445312 62.390625 L 374.445312 59.753906 L 370.128906 58.527344 L 370.128906 41.332031 C 370.128906 34.683594 375 31.542969 379.46875 31.542969 C 385.730469 31.542969 386.167969 36.328125 386.167969 44.164062 L 386.167969 58.527344 L 381.855469 59.753906 L 381.855469 62.390625 L 397.375 62.390625 L 397.375 59.753906 L 392.414062 58.527344 Z M 392.414062 44.292969 "/>
+</g>
+</svg></span></div>
+    <div class="cswitch" id="cswitch">
+      <button class="cbtn" id="cbtn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="clist"><span class="av" id="cAv" aria-hidden="true"></span><span class="ct"><span class="cn" id="cName"></span><span class="cm" id="cMeta"></span></span></button>
+      <ul class="clist" id="clist" role="listbox" aria-label="Choose client" hidden></ul>
+    </div>
+    <button class="btn" data-act="open-assump" aria-label="Assumptions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span class="lbl">Assumptions</span></button>
+    <button class="btn" data-act="open-summary" aria-label="Client proposal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3M8 7l4-4 4 4M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg><span class="lbl">Client proposal</span></button>
+  </header>
+  <main id="app" aria-busy="false"></main>
+  <div id="announce" class="sr" role="status" aria-live="polite"></div>
+  <footer id="foot"></footer>
+ </div>
+</div>
+<div id="scrim" hidden></div>
+<aside id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" hidden tabindex="-1"></aside>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+'use strict';
+// ==ENGINE START==
+
+/* Embedded sample series: calendar-year total returns in percent, rounded.
+   S&P 500 and Nasdaq-100, 2015 to 2025. Public index data; verify before client use. */
+const YRS=[2015,2016,2017,2018,2019,2020,2021,2022,2023,2024,2025];
+const SPX=[1.38,11.96,21.83,-4.38,31.49,18.40,28.71,-18.11,26.29,25.02,17.88];
+const NDX=[9.75,7.27,32.66,-0.04,39.46,48.88,27.42,-32.58,54.85,25.88,20.9];
+
+/* Federal ordinary brackets, tax year 2026 (IRS Rev. Proc. 2025-32). Upper bound of taxable income, rate. */
+const BR={
+  single:[[12400,.10],[50400,.12],[105700,.22],[201775,.24],[256200,.32],[640600,.35],[Infinity,.37]],
+  mfj:[[24800,.10],[100800,.12],[211400,.22],[403550,.24],[512450,.32],[768700,.35],[Infinity,.37]]
+};
+const LTCG_T={single:[49450,545500],mfj:[98900,613700]};
+const NIIT_T={single:200000,mfj:250000};
+/* Flat planning rates, approximate. exempt = state exempts most retirement income. */
+const STATES={
+  TX:{n:'Texas',r:0},FL:{n:'Florida',r:0},WA:{n:'Washington',r:0},
+  PA:{n:'Pennsylvania',r:.0307,exempt:true},NC:{n:'North Carolina',r:.0399},
+  IL:{n:'Illinois',r:.0495,exempt:true},MA:{n:'Massachusetts',r:.05},
+  NJ:{n:'New Jersey',r:.0637},NY:{n:'New York',r:.06},CA:{n:'California',r:.093}
+};
+const RISKW={Conservative:[.3,.7],Moderate:[.6,.4],Aggressive:[.8,.2]};
+const ASSET_ORDER=['mf','alt','trad','roth','re'];
+const RISKY=['mf','trad','roth','re','alt'];
+
+function clone(o){return JSON.parse(JSON.stringify(o));}
+function fedTax(inc,fs){let t=0,lo=0;for(const [hi,r] of BR[fs]){if(inc>lo)t+=(Math.min(inc,hi)-lo)*r;lo=hi;}return t;}
+function margRate(inc,fs){for(const [hi,r] of BR[fs])if(inc<=hi)return r;return .37;}
+
+function baseHoldings(v){
+  return [
+    {id:'mf',label:'Mutual fund, S&P 500 exposure',short:'S&P',value:v.mf[0],basis:v.mf[1],exit:.01,
+      ci:{name:'S&P 500 index fund',mu:.075,vol:.16,exp:.0075,yld:.014},
+      pi:{name:'Nasdaq-oriented fund',mu:.08,vol:.21,exp:.01,yld:.006},
+      alts:[{name:'low-cost S&P 500 index fund',short:'Low-cost',mu:.075,vol:.16,exp:.0005,yld:.014},{name:'balanced stock and bond fund',short:'Balanced',mu:.062,vol:.10,exp:.0010,yld:.025}]},
+    {id:'ann',label:'Fixed annuity',short:'ANN',value:v.ann[0],basis:v.ann[1],exit:.015,payout:.055,
+      ci:{name:'Vanguard annuity',rate:.03},pi:{name:'Fidelity annuity',rate:.0325}},
+    {id:'ira',label:'Traditional IRA',short:'IRA',value:v.ira,exit:0,
+      ci:{name:'Traditional IRA',mu:.065,vol:.12,exp:.005},pi:{name:'Roth IRA',mu:.065,vol:.12,exp:.005}},
+    {id:'re',label:'Real estate fund of funds',short:'RE',value:v.re,exit:0,
+      ci:{name:'Real estate fund of funds',mu:.06,vol:.14,exp:.01}},
+    {id:'alt',label:'Alternatives: crypto, bonds, gold',short:'ALT',value:v.alt,exit:0,
+      ci:{name:'Crypto, bonds and gold mix',mu:.055,vol:.25,exp:.005}}
+  ];
+}
+const PRESETS={
+  alex:{label:'Alex Morgan, 50',
+    persona:{name:'Alex',full:'Alex Morgan',age:50,retire:60,end:90,spend:38000,ssAmt:22000,ssAge:67,infl:.025,state:'CA',stateRate:.093,filing:'single',baseInc:120000,retOrd:.14,risk:'Moderate',liq:25000},
+    holdings:()=>baseHoldings({mf:[50000,10000],ann:[100000,85000],ira:200000,re:250000,alt:100000})},
+  maya:{label:'Maya Rivera, 58',
+    persona:{name:'Maya',full:'Maya Rivera',age:58,retire:62,end:90,spend:46000,ssAmt:28000,ssAge:67,infl:.025,state:'TX',stateRate:0,filing:'mfj',baseInc:45000,retOrd:.18,risk:'Conservative',liq:40000},
+    holdings:()=>baseHoldings({mf:[120000,70000],ann:[150000,150000],ira:450000,re:80000,alt:20000})},
+  rohan:{label:'Rohan Mehta, 45',
+    persona:{name:'Rohan',full:'Rohan Mehta',age:45,retire:60,end:90,spend:46000,ssAmt:26000,ssAge:67,infl:.025,state:'NY',stateRate:.06,filing:'mfj',baseInc:230000,retOrd:.22,risk:'Aggressive',liq:60000},
+    holdings:()=>baseHoldings({mf:[200000,60000],ann:[0,0],ira:300000,re:150000,alt:100000})}
+};
+let S=null,R=null,SH=null,SHkey='';
+function buildState(id){
+  const p=PRESETS[id];
+  return {pid:id,persona:clone(p.persona),holdings:p.holdings(),
+    fees:{txn:.001,adv:.005,convYears:5,x1035:true},
+    mkt:{bear:-.025,base:0,bull:.015,corr:.7,paths:300,disc:.04},
+    ui:{age:90,scen:'base',dec:{mf:1,ann:1,ira:1},open:{costs:false,ages:false,tested:false,stress:false,hist:false},sheet:null},notes:[]};
+}
+function H(id){return S.holdings.find(h=>h.id===id);}
+function mfOpt(n){const m=H('mf');if(!n)return null;if(n===1)return Object.assign({adv:true},m.pi);const a=m.alts&&m.alts[n-2];return a?Object.assign({adv:false},a):null;}
+function clampState(){
+  const P=S.persona;let ch=false;S.notes=[];
+  const lim=(k,lo,hi,lab)=>{const v=Math.min(hi,Math.max(lo,P[k]));if(v!==P[k]){S.notes.push(lab+' adjusted to '+(v>=1?v:(v*100).toFixed(1)+'%')+'.');P[k]=v;ch=true;}};
+  lim('age',18,84,'Current age');lim('retire',P.age+1,85,'Retirement age');P.end=90;
+  lim('ssAge',62,70,'Start age for other income');lim('infl',0,.1,'Inflation');lim('spend',0,1e6,'Spending');lim('baseInc',0,2e6,'Taxable income');lim('retOrd',0,.5,'Retirement tax rate');lim('stateRate',0,.2,'State tax rate');
+  const F=S.fees,M=S.mkt;
+  F.convYears=Math.round(Math.min(10,Math.max(1,F.convYears)));
+  M.paths=Math.round(Math.min(2000,Math.max(200,M.paths)));
+  M.corr=Math.min(.95,Math.max(0,M.corr));
+  return ch;
+}
+function taxRates(){
+  const P=S.persona,st=STATES[P.state]||{};
+  const [t0,t1]=LTCG_T[P.filing];
+  let lt=P.baseInc<=t0?0:(P.baseInc<=t1?.15:.20);
+  if(P.baseInc>NIIT_T[P.filing])lt+=.038;
+  const retSR=st.exempt?0:P.stateRate;
+  return {ltFed:lt,ltcg:lt+P.stateRate,ordNow:margRate(P.baseInc,P.filing)+P.stateRate,ordRet:P.retOrd+retSR,margFed:margRate(P.baseInc,P.filing)};
+}
+function genShocks(){
+  const n=S.persona.end-S.persona.age,N=S.mkt.paths,key=N+'|'+n;
+  if(SHkey===key)return;
+  let s=20261103;
+  const rnd=()=>{s|=0;s=s+0x6D2B79F5|0;let t=Math.imul(s^s>>>15,1|s);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};
+  SH=new Float32Array(N*n*6);
+  for(let i=0;i<SH.length;i+=2){
+    const u=Math.max(rnd(),1e-12),v=rnd(),r=Math.sqrt(-2*Math.log(u));
+    SH[i]=r*Math.cos(2*Math.PI*v);
+    if(i+1<SH.length)SH[i+1]=r*Math.sin(2*Math.PI*v);
+  }
+  SHkey=key;
+}
+function checkAges(){
+  const P=S.persona;
+  return [P.retire,70,80,90].filter((x,i,a)=>x>=P.retire&&x<=P.end&&a.indexOf(x)===i);
+}
+function prepare(dec){
+  const P=S.persona,F=S.fees,tx=taxRates();
+  const cost={cg:0,exit:0,txn:0,annTax:0};
+  const B={};
+  const mf=H('mf'),mo=mfOpt(dec.mf);
+  if(mo&&mf.value>0){
+    const gain=Math.max(0,mf.value-mf.basis);
+    cost.cg=gain*tx.ltcg;cost.exit=mf.value*mf.exit;cost.txn=mf.value*F.txn;
+    const nv=Math.max(0,mf.value-cost.cg-cost.exit-cost.txn);
+    B.mf={v:nv,basis:nv,mu:mo.mu,vol:mo.vol,exp:mo.exp+(mo.adv?F.adv:0),yld:mo.yld,adv:mo.adv?F.adv:0,j:0};
+  }else B.mf={v:mf.value,basis:mf.basis,mu:mf.ci.mu,vol:mf.ci.vol,exp:mf.ci.exp,yld:mf.ci.yld,adv:0,j:0};
+  const an=H('ann');
+  if(dec.ann===1&&an.value>0){
+    cost.exit+=an.value*an.exit;
+    let tax=0;
+    if(!F.x1035){tax=Math.max(0,an.value-an.basis)*tx.ordNow;cost.annTax=tax;}
+    const nv=Math.max(0,an.value-an.value*an.exit-tax);
+    B.ann={v:nv,basis:F.x1035?an.basis:nv,rate:an.pi.rate,payout:an.payout};
+  }else B.ann={v:an.value,basis:an.basis,rate:an.ci.rate,payout:an.payout};
+  const ira=H('ira'),c=dec.ira||0;
+  B.trad={v:ira.value,mu:ira.ci.mu,vol:ira.ci.vol,exp:ira.ci.exp,j:2};
+  B.roth={v:0,mu:ira.pi.mu,vol:ira.pi.vol,exp:ira.pi.exp,adv:0,j:2};
+  const yrs=Math.max(1,Math.min(F.convYears,P.retire-P.age));
+  const plan={per:c>0?ira.value*c/yrs:0,yrs};
+  const re=H('re'),al=H('alt');
+  B.re={v:re.value,mu:re.ci.mu,vol:re.ci.vol,exp:re.ci.exp,j:3};
+  B.alt={v:al.value,mu:al.ci.mu,vol:al.ci.vol,exp:al.ci.exp,j:4};
+  const dfl=new Float64Array(P.end-P.age+1);for(let i=0;i<dfl.length;i++)dfl[i]=Math.pow(1+P.infl,i);
+  return {B,cost,plan,tx,dec,dfl};
+}
+function bRate(k,b,tx){
+  if(k==='mf')return b.v>0?Math.max(0,1-b.basis/b.v)*tx.ltcg:0;
+  if(k==='trad')return tx.ordRet;
+  if(k==='alt')return .5*tx.ltcg;
+  if(k==='re')return .08+.5*tx.ltcg;
+  return 0;
+}
+function pull(bk,order,need,tx){
+  for(const k of order){
+    const b=bk[k];
+    if(!b||b.v<=0||need<=.5)continue;
+    const r=Math.min(.95,bRate(k,b,tx)),gross=need/(1-r),take=Math.min(b.v,gross);
+    if(k==='mf')b.basis*=1-take/b.v;
+    b.v-=take;need-=take*(1-r);
+  }
+  return Math.max(0,need);
+}
+function wealth(bk,tx,defl){
+  let s=0;
+  for(const k in bk){
+    const b=bk[k];
+    if(k==='ann'){const g=b.v>0?Math.max(0,1-b.basis/b.v):0;s+=b.v*(1-g*tx.ordRet);}
+    else s+=b.v*(1-Math.min(.95,bRate(k,b,tx)));
+  }
+  return s/defl;
+}
+function run(prep,z,p){
+  const P=S.persona,M=S.mkt,tx=prep.tx,n=P.end-P.age;
+  const bk={};for(const k in prep.B)bk[k]=Object.assign({},prep.B[k]);
+  const delta=M[S.ui.scen]||0,sq=Math.sqrt(M.corr),sq2=Math.sqrt(1-M.corr);
+  const w=new Float64Array(n+1),dfl=prep.dfl;
+  let fail=-1,convTax=0,advPV=0,annInc=0,annNet=0,minLiq=Infinity;
+  for(let i=0;i<=n;i++){
+    const a=P.age+i,defl=dfl[i];
+    w[i]=wealth(bk,tx,defl);
+    if(a<P.retire){const liq=bk.mf.v+bk.alt.v;if(liq<minLiq)minLiq=liq;}
+    if(i===n)break;
+    if(prep.plan.per>0&&i<prep.plan.yrs){
+      const amt=Math.min(prep.plan.per,bk.trad.v);
+      if(amt>0){
+        const tax=fedTax(P.baseInc+amt,P.filing)-fedTax(P.baseInc,P.filing)+amt*P.stateRate;
+        convTax+=tax;bk.trad.v-=amt;bk.roth.v+=amt;
+        const un=pull(bk,['mf','alt'],tax,tx);
+        if(un>.5){const t=bk.trad,take=Math.min(t.v,un*1.1);t.v-=take;}
+      }
+    }
+    if(a>=P.retire){
+      const A=bk.ann;
+      if(a===P.retire){
+        annInc=A.payout*A.v;
+        const tf=annInc>0?Math.min(1,Math.max(0,1-A.basis/(annInc*25))):0;
+        annNet=annInc*(1-tf*tx.ordRet);
+      }
+      const need=P.spend*defl-(a>=P.ssAge?P.ssAmt*defl:0)-annNet;
+      if(need>0){const un=pull(bk,ASSET_ORDER,need,tx);if(un>1&&fail<0)fail=a;}
+      A.v=Math.max(0,(A.v-annInc)*(1+A.rate));
+    }else bk.ann.v*=1+bk.ann.rate;
+    const o=z?(p*n+i)*6:0;
+    for(const k of RISKY){
+      const b=bk[k];
+      if(b.v<=0)continue;
+      const zz=z?sq*z[o]+sq2*z[o+1+b.j]:0;
+      const r=Math.max(-.6,b.mu+delta+(S.stress?S.stress(a):0)+b.vol*zz-b.exp);
+      if(b.adv)advPV+=b.v*b.adv/Math.pow(1+M.disc,i);
+      b.v*=1+r;
+      if(k==='mf'){const dv=b.v*b.yld,dr=dv*tx.ltcg;b.v-=dr;b.basis+=dv-dr;}
+    }
+  }
+  return {w,fail,convTax,advPV,annInc,annNet,minLiq};
+}
+function evaluate(d){
+  const P=S.persona,M=S.mkt,n=P.end-P.age,N=M.paths;
+  const prep=prepare(d),det=run(prep,null,0);
+  const ages=checkAges(),fa=new Array(ages.length).fill(0),fails=new Int16Array(N);
+  const mat=new Float64Array(N*(n+1));let ok=0;
+  for(let p=0;p<N;p++){
+    const r=run(prep,SH,p);
+    mat.set(r.w,p*(n+1));
+    fails[p]=r.fail;if(r.fail<0)ok++;
+    for(let q=0;q<ages.length;q++)if(r.fail<0||r.fail>ages[q])fa[q]++;
+  }
+  const p10=new Float64Array(n+1),p50=new Float64Array(n+1),p90=new Float64Array(n+1),col=new Float64Array(N);
+  for(let i=0;i<=n;i++){
+    for(let p=0;p<N;p++)col[p]=mat[p*(n+1)+i];
+    col.sort();
+    p10[i]=col[Math.floor(.1*(N-1))];p50[i]=col[Math.floor(.5*(N-1))];p90[i]=col[Math.floor(.9*(N-1))];
+  }
+  return {d,prep,det,p10,p50,p90,success:ok/N,funded:fa.map(x=>x/N),ages,fails};
+}
+const key=d=>''+d.mf+d.ann+d.ira;
+function effDec(){
+  const d=S.ui.dec;
+  return {mf:H('mf').value>0?d.mf:0,ann:H('ann').value>0?d.ann:0,ira:H('ira').value>0?d.ira:0};
+}
+function isNone(){const d=effDec();return !d.mf&&!d.ann&&!d.ira;}
+function compute(){
+  clampState();genShocks();
+  const P=S.persona,n=P.end-P.age;
+  const mfO=H('mf').value>0?(H('mf').alts?[0,1,2,3]:[0,1]):[0],anO=H('ann').value>0?[0,1]:[0],irO=H('ira').value>0?[0,.25,.5,1]:[0];
+  const cand={};
+  for(const m of mfO)for(const a of anO)for(const c of irO){const d={mf:m,ann:a,ira:c};cand[key(d)]=evaluate(d);}
+  const ci=cand['000'],wt=RISKW[P.risk]||RISKW.Moderate;
+  let maxS=0;for(const k in cand)maxS=Math.max(maxS,cand[k].success);
+  for(const k in cand)cand[k].score=wt[0]*cand[k].p50[n]+wt[1]*cand[k].p10[n];
+  const margin=Math.max(2000,.01*Math.abs(ci.score));
+  let best=ci,bs=ci.score+margin;
+  for(const k in cand){
+    const c=cand[k];
+    if(c===ci||c.success<maxS-.01)continue;
+    if(c.score>bs){bs=c.score;best=c;}
+  }
+  R={cand,ci,best,ages:checkAges()};
+  if(S.ui.age<P.age||S.ui.age>P.end)S.ui.age=P.end;
+  pickCur();
+}
+function pickCur(){R.cur=R.cand[key(effDec())]||R.ci;}
+
+/* gross versus net expected return */
+function blend(dec){
+  const F=S.fees,tx=taxRates(),prep=R.cand[key(dec)].prep,rows=[];
+  const mf=H('mf'),an=H('ann'),ira=H('ira'),re=H('re'),al=H('alt');
+  const mo=mfOpt(dec.mf),c=dec.ira||0;
+  if(mf.value>0)rows.push({v:mf.value,g:mo?mo.mu:mf.ci.mu,f:mo?mo.exp+(mo.adv?F.adv:0):mf.ci.exp,d:(mo?mo.yld:mf.ci.yld)*tx.ltcg});
+  if(an.value>0)rows.push({v:an.value,g:dec.ann===1?an.pi.rate:an.ci.rate,f:0,d:0});
+  if(ira.value>0)rows.push({v:ira.value,g:ira.ci.mu,f:ira.ci.exp*(1-c)+ira.pi.exp*c,d:0});
+  if(re.value>0)rows.push({v:re.value,g:re.ci.mu,f:re.ci.exp,d:0});
+  if(al.value>0)rows.push({v:al.value,g:al.ci.mu,f:al.ci.exp,d:0});
+  const V=rows.reduce((s,r)=>s+r.v,0)||1;
+  const gross=rows.reduce((s,r)=>s+r.v*r.g,0)/V;
+  const net=rows.reduce((s,r)=>s+r.v*(r.g-r.f-r.d),0)/V;
+  const upfront=prep.cost.cg+prep.cost.exit+prep.cost.txn+prep.cost.annTax+R.cand[key(dec)].det.convTax;
+  const grown=rows.reduce((s,r)=>s+r.v*Math.pow(1+r.g-r.f-r.d,10),0)/V;
+  const adj=Math.pow(Math.max(.0001,(1-upfront/V)*grown),.1)-1;
+  const fee=rows.reduce((s,r)=>s+r.v*r.f,0)/V;
+  return {gross,net,adj,fee};
+}
+
+/* historical back-test of the switchable fund sleeve, after fees, tax drag, exit and transaction costs */
+function backtest(n){
+  const mf=H('mf');
+  if(mf.value<=0)return null;
+  const tx=taxRates(),F=S.fees,len=YRS.length;
+  if(n>len)n=len;
+  const idx=len-n,pr=prepare({mf:1,ann:0,ira:0}),c0=pr.cost.cg+pr.cost.exit+pr.cost.txn;
+  const sim=(start,basis,ret,exp,yld,fee)=>{
+    let v=start,b=basis;const pre=[v],post=[v-Math.max(0,v-b)*tx.ltcg];
+    for(let t=idx;t<len;t++){
+      v*=1+ret[t]/100-exp-fee;
+      const dv=v*yld,dr=dv*tx.ltcg;v-=dr;b+=dv-dr;
+      pre.push(v);post.push(v-Math.max(0,v-b)*tx.ltcg);
+    }
+    return {pre,post};
+  };
+  const ci=sim(mf.value,mf.basis,SPX,mf.ci.exp,mf.ci.yld,0);
+  const pi=sim(mf.value-c0,mf.value-c0,NDX,mf.pi.exp,mf.pi.yld,F.adv);
+  const ref=ci.post[0];
+  const stats=o=>{
+    const r=[];for(let i=1;i<o.pre.length;i++)r.push(o.pre[i]/o.pre[i-1]-1);
+    const m=r.reduce((a,b)=>a+b,0)/r.length;
+    const vol=r.length>1?Math.sqrt(r.reduce((a,b)=>a+(b-m)*(b-m),0)/(r.length-1)):null;
+    let pk=o.pre[0],dd=0;for(const v of o.pre){pk=Math.max(pk,v);dd=Math.min(dd,v/pk-1);}
+    const end=o.post[o.post.length-1];
+    return {end,cum:end/ref-1,cagr:Math.pow(Math.max(1e-9,end/ref),1/n)-1,vol,mdd:dd};
+  };
+  let be=null;
+  for(let i=n;i>=1;i--){if(pi.post[i]>=ci.post[i])be=i;else break;}
+  return {n,from:YRS[idx],to:YRS[len-1],ci:stats(ci),pi:stats(pi),be,c0};
+}
+// ==ENGINE END==
+
+/* ---------- UI ---------- */
+const $=s=>document.querySelector(s);
+const MINUS='\u2212';
+function fm(x,o={}){
+  const a=Math.abs(x);let s;
+  if(a>=1e6)s='$'+(a/1e6).toFixed(a>=1e7?1:2)+'M';
+  else if(a>=1e5&&!o.full)s='$'+Math.round(a/1e3)+'K';
+  else s='$'+Math.round(a).toLocaleString('en-US');
+  if(o.sign)return (x<0?MINUS:'+')+s;
+  return (x<0&&Math.round(a)>0?MINUS:'')+s;
+}
+const pc=(x,d=1)=>(x*100).toFixed(d)+'%';
+const spc=(x,d=1)=>(x<0?MINUS:'+')+Math.abs(x*100).toFixed(d)+'%';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const nEnd=()=>S.persona.end-S.persona.age;
+let firstDraw=true,lastFocus=null;
+
+function margin(){return Math.max(2000,.01*Math.abs(R.ci.p50[nEnd()]));}
+function effKey(k){return R.cand[k]?R.cand[k].p50[nEnd()]-R.ci.p50[nEnd()]:null;}
+function tone(d){const m=margin();return d>m?'pos':(d<-m?'neg':'');}
+function describeTag(d){
+  const m=H('mf'),p=[];
+  if(d.mf)p.push(['','proposed fund','low-cost index fund','balanced fund'][d.mf]);
+  if(d.ann)p.push('annuity exchange');
+  if(d.ira)p.push(Math.round(d.ira*100)+'% Roth conversion');
+  return p.length?(p.length>1?p.slice(0,-1).join(', ')+' and '+p[p.length-1]:p[0]):'keep current investments';
+}
+function describe(d){
+  const p=[];
+  if(d.mf){const m=H('mf'),o=d.mf===1?m.pi:m.alts[d.mf-2];p.push((d.mf===1?'switch the fund to the ':'move the fund to a ')+o.name);}
+  if(d.ann)p.push('exchange the annuity');
+  if(d.ira)p.push('convert '+Math.round(d.ira*100)+'% of the IRA to Roth');
+  if(!p.length)return 'keep current investments';
+  return p.join(', ');
+}
+function isZero(){const n=nEnd();return R.ci.p50[n]<1000&&R.cur.p50[n]<1000;}
+function verdict(){
+  const n=nEnd(),cur=R.cur,ci=R.ci;
+  if(isNone())return {k:'none'};
+  if(isZero()){const ds=cur.success-ci.success;return {k:ds>.01?'go':(ds<-.01?'stay':'close')};}
+  const dl=cur.p50[n]-ci.p50[n],rel=dl/Math.max(1,ci.p50[n]),ds=cur.success-ci.success;
+  if(rel>.02&&ds>=-.005)return {k:'go'};
+  if(rel<-.02||ds<-.02)return {k:'stay'};
+  return {k:'close'};
+}
+function fundedAt(c,a){let k=0;for(let p=0;p<c.fails.length;p++){const f=c.fails[p];if(f<0||f>a)k++;}return k/c.fails.length;}
+function breakAge(){
+  const n=nEnd(),a=R.ci.p50,b=R.cur.p50;
+  if(isNone())return {none:true};
+  let t=-1;for(let i=n;i>=0;i--){if(b[i]>=a[i])t=i;else break;}
+  if(t===-1)return {never:true};
+  if(t===0)return {now:true};
+  return {age:S.persona.age+t,i:t};
+}
+function breakText(){
+  const b=breakAge(),P=S.persona;
+  if(b.none)return '';
+  if(b.never)return `The plan stays behind the current mix through age ${P.end}.`;
+  if(b.now)return 'The plan is ahead from day one.';
+  return `The plan overtakes the current mix at age ${b.age}.`;
+}
+
+/* ----- hero ----- */
+function heroViz(){
+  const P=S.persona,n=nEnd(),ci=R.ci.p50,cu=R.cur.p50,none=isNone();
+  const W=460,H=220,m={l:6,r:100,t:20,b:28};
+  const mx=Math.max(1,Math.max(...ci,...cu))*1.08;
+  const x=i=>m.l+i/n*(W-m.l-m.r),y=v=>H-m.b-Math.max(0,v)/mx*(H-m.t-m.b);
+  const line=a=>Array.from(a).map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join(' ');
+  const back=Array.from(cu).map((v,i)=>i).reverse().map(i=>'L'+x(i).toFixed(1)+' '+y(cu[i]).toFixed(1)).join(' ');
+  const gap=none?'':`<path d="${line(ci)} ${back} Z" fill="rgba(255,255,255,.1)"/>`;
+  const dr=firstDraw?'class="draw" pathLength="1"':'';
+  const yc=y(ci[n]);let yp=y(cu[n]);
+  if(!none){if(yp>=yc&&yp-yc<34)yp=yc+34;else if(yp<yc&&yc-yp<34)yp=yc-34;}
+  const lx=W-m.r+12;
+  const lab=(yy,val,name,col)=>`<text x="${lx}" y="${yy-1}" font-size="16" font-weight="700" fill="${col}">${fm(val)}</text><text x="${lx}" y="${yy+15}" font-size="12.5" fill="rgba(255,255,255,.75)">${name}</text>`;
+  return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
+    <line x1="${m.l}" x2="${W-m.r}" y1="${H-m.b}" y2="${H-m.b}" stroke="rgba(255,255,255,.22)"/>
+    ${gap}
+    <path d="${line(ci)}" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="2.4" stroke-dasharray="6 6" stroke-linecap="round"/>
+    ${none?'':`<path d="${line(cu)}" ${dr} fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="${x(n)}" cy="${y(cu[n])}" r="4.5" fill="#ffffff"/>`}
+    <circle cx="${x(n)}" cy="${y(ci[n])}" r="4" fill="#fff"/>
+    ${lab(yc,ci[n],none?'Today’s mix':'Current','#fff')}
+    ${none?'':lab(yp,cu[n],'Plan','#ffffff')}
+    <text x="${m.l}" y="${H-8}" font-size="12.5" fill="rgba(255,255,255,.7)">Age ${P.age}</text>
+    <text x="${W-m.r}" y="${H-8}" text-anchor="end" font-size="12.5" fill="rgba(255,255,255,.7)">${P.end}</text>
+  </svg>`;
+}
+function heroStats(){
+  if(isNone())return '';
+  const P=S.persona,ci=R.ci,cu=R.cur,tot=costParts().reduce((s,r)=>s+r[1],0),be=breakAge();
+  const bt=be.never?'Not by '+P.end:(be.now?'From day one':'Age '+be.age);
+  const st=(l,v)=>`<span class="hstat"><small>${l}</small><b class="num">${v}</b></span>`;
+  return st('Cost to switch',fm(tot))+st('Break-even',bt)+st('Savings last (now / plan)',pc(ci.success,0)+' / '+pc(cu.success,0));
+}
+function heroHTML(){
+  const P=S.persona,n=nEnd(),cur=R.cur,ci=R.ci,best=R.best;
+  const none=isNone(),bestNone=key(best.d)==='000',same=key(best.d)===key(effDec());
+  const d=cur.p50[n]-ci.p50[n],v=verdict(),who=esc(P.name);
+  const mk={bear:'weak',base:'expected',bull:'strong'}[S.ui.scen];
+  let h,s;
+  if(none&&bestNone){h=`We recommend keeping ${who}’s current investments.`;s=`We tested ${Object.keys(R.cand).length-1} ways to move assets. None improves the outcome by a meaningful margin once taxes, exit charges and fees are counted.`;}
+  else if(none){h='No changes selected.';s='Choose what to change below, or apply our recommendation.';}
+  else if(isZero()){
+    h=v.k==='go'?`This plan helps ${who}’s savings last longer.`:(v.k==='stay'?`This plan makes it more likely ${who}’s savings run out.`:`This plan makes little difference for ${who}.`);
+    s=`In ${mk} markets the typical case runs out of money before age ${P.end} either way. Savings last to ${P.end} in ${pc(ci.success,0)} of simulated markets with no change and ${pc(cur.success,0)} with this plan.`;
+  }else{
+    const amt=`<em>${fm(Math.abs(d),{full:true})}</em>`;
+    if(v.k==='go')h=`This plan adds ${amt} to ${who}’s outcome by age ${P.end}.`;
+    else if(v.k==='stay')h=`This plan would cost ${who} ${amt} by age ${P.end}.`;
+    else h=`This plan makes little difference for ${who}.`;
+    s=`Typical outcome at age ${P.end}, in ${mk} markets: ${fm(ci.p50[n])} if nothing changes, ${fm(cur.p50[n])} with this plan.`;
+  }
+  let rec='',act='';
+  if(!same){
+    const bd=best.p50[n]-ci.p50[n];
+    rec=bestNone?'':`<p class="rec-i"><b>Our recommendation:</b> ${esc(describeTag(best.d))}. ${bd>=0?'Adds':'Costs'} ${fm(Math.abs(bd),{full:true})} by age ${P.end}.</p>`;
+    act=`<button class="btn lime hbtn" data-act="apply">${bestNone?'Keep current investments':'Apply recommended plan'}</button>`;
+  }else if(!none||bestNone){
+    act=`<button class="btn lime hbtn" data-act="open-summary">Prepare client proposal</button>`;
+  }
+  return `<section class="hero" aria-labelledby="h-title"><span class="status hero-flag">Draft for review</span><div class="hero-main"><h1 class="hero-h" id="h-title">${h}</h1><p class="hero-s">${s}</p>${rec}</div><div class="hrow">${heroStats()}${act}</div></section>`;
+}
+
+/* ----- decisions ----- */
+function seg(name,attr,legend,opts,val,small){
+  return `<fieldset class="seg-group ${small?'sm':''}"><legend class="sr">${legend}</legend>${opts.map(o=>`<label class="opt"><input type="radio" name="${name}" ${attr} value="${o.v}" ${String(o.v)===String(val)?'checked':''}><span>${o.label}${o.sub?`<small class="${o.cls||''}">${o.sub}</small>`:''}</span></label>`).join('')}</fieldset>`;
+}
+function recTag(id){
+  const b=R.best.d[id];if(b===undefined)return '';
+  const lab=id==='ira'?(b>0?'convert '+Math.round(b*100)+'%':'keep'):(id==='mf'?['keep','proposed fund','low-cost index','balanced fund'][b]:(b?'exchange':'keep'));
+  return `<span class="tag">Recommended: ${lab}</span>`;
+}
+function decisionHTML(){
+  const P=S.persona,F=S.fees,dec=effDec(),cur=R.cur,ci=R.ci;
+  const mf=H('mf'),an=H('ann'),ira=H('ira'),re=H('re'),al=H('alt');
+  const ef=e=>({sub:fm(e,{sign:true}),cls:tone(e)});
+  let items='';
+  if(mf.value>0){
+    const c=prepare({mf:1,ann:0,ira:0}).cost,a1=mf.alts[0],a2=mf.alts[1];
+    const opts=[{v:0,label:'Keep',sub:'No change'},{v:1,label:'Proposed',...ef(effKey('100'))},{v:2,label:'Low-cost',...ef(effKey('200'))},{v:3,label:'Balanced',...ef(effKey('300'))}];
+    items+=`<article class="item"><div class="item-h"><div class="item-t"><h3>Mutual fund</h3>${recTag('mf')}</div><span class="amt num">${fm(mf.value,{full:true})}</span></div>
+      <p class="item-d">Now ${esc(mf.ci.name)}. Proposed: ${esc(mf.pi.name)}. Also tested: a low-cost index fund and a balanced fund.</p>
+      ${seg('d-mf','data-dec="mf"','Mutual fund',opts,dec.mf)}
+      <p class="item-n">Switching costs ${fm(c.cg+c.exit+c.txn)} now (${fm(c.cg)} is capital gains tax). Yearly cost: ${pc(mf.ci.exp,2)} today, ${pc(mf.pi.exp+F.adv,2)} proposed with advisory fee, ${pc(a1.exp,2)} low-cost, ${pc(a2.exp,2)} balanced.</p></article>`;
+  }
+  if(an.value>0){
+    const e=effKey('010');
+    items+=`<article class="item"><div class="item-h"><div class="item-t"><h3>Fixed annuity</h3>${recTag('ann')}</div><span class="amt num">${fm(an.value,{full:true})}</span></div>
+      <p class="item-d">Now ${esc(an.ci.name)} at ${pc(an.ci.rate,2)}. Proposed ${esc(an.pi.name)} at ${pc(an.pi.rate,2)}.</p>
+      ${seg('d-ann','data-dec="ann"','Fixed annuity',[{v:0,label:'Keep',sub:'No change'},{v:1,label:'Exchange',...ef(e)}],dec.ann)}
+      <p class="item-n">Exit charge ${fm(an.value*an.exit)}. ${F.x1035?'A 1035 exchange avoids tax.':'The exchange is taxable.'} Lifetime income from ${P.retire}: ${fm(ci.det.annNet)} a year now, ${fm(R.cand['010'].det.annNet)} if exchanged.</p></article>`;
+  }
+  if(ira.value>0){
+    const yrs=Math.max(1,Math.min(F.convYears,P.retire-P.age));
+    const opts=[{v:0,label:'Keep',sub:'No change'}].concat([.25,.5,1].map(c=>({v:c,label:Math.round(c*100)+'%',...ef(effKey('00'+c))})));
+    const ct=dec.ira>0?R.cand['00'+dec.ira].det.convTax:0;
+    items+=`<article class="item"><div class="item-h"><div class="item-t"><h3>Traditional IRA</h3>${recTag('ira')}</div><span class="amt num">${fm(ira.value,{full:true})}</span></div>
+      <p class="item-d">Convert part of it to a Roth IRA. You pay income tax on the converted amount now and withdraw it tax-free later.</p>
+      ${seg('d-ira','data-dec="ira"','Share of the IRA to convert to Roth',opts,dec.ira)}
+      <p class="item-n">Converted evenly over ${yrs} years.${dec.ira>0?` Conversion tax at this level: ${fm(ct)}.`:''}</p></article>`;
+  }
+  if(!items)items='<p class="lede">This client has no holdings that can be switched.</p>';
+  const kept=[];
+  if(re.value>0)kept.push(`real estate ($${Math.round(re.value/1000)}K)`);
+  if(al.value>0)kept.push(`alternatives ($${Math.round(al.value/1000)}K)`);
+  const liq=cur.det.minLiq,alert=isFinite(liq)&&liq<P.liq?`<p class="alert" role="alert">This plan leaves ${fm(liq)} in easy-to-sell investments before age ${P.retire}. ${esc(P.name)} needs ${fm(P.liq)}.</p>`:'';
+  return `<section class="sect pair" aria-labelledby="dec-t"><div class="sect-head"><div class="sect-h"><h2 id="dec-t">Holdings under review</h2></div><p class="lede">Effects are shown by age ${P.end}, in today’s dollars.${kept.length?` ${(t=>t.charAt(0).toUpperCase()+t.slice(1))(kept.join(' and '))} stay${kept.length>1?'':'s'} unchanged.`:''}</p></div><div class="sect-body">${alert}<div class="items">${items}</div></div></section>`;
+}
+
+/* ----- chart and facts ----- */
+function niceMax(m){
+  const p=Math.pow(10,Math.floor(Math.log10(m||1)));
+  for(const s of [1,1.5,2,2.5,3,4,5,6,8,10]){if(s*p>=m)return s*p;}
+  return 10*p;
+}
+let CHW=640;
+function chartW(){const a=$('#app'),aw=(a&&a.clientWidth?a.clientWidth:700),two=window.matchMedia&&matchMedia('(min-width:1024px)').matches,cw=(two?(aw-24)*6/11:aw)-50;CHW=Math.round(Math.max(280,Math.min(640,cw)));return CHW;}
+function chartHTML(){
+  const P=S.persona,n=nEnd(),W=chartW(),Hh=(W<460?190:220)+CHEX,m={l:52,r:14,t:16,b:30};
+  const ci=R.ci,cu=R.cur,none=isNone();
+  const ymax=niceMax(Math.max(...ci.p50,...cu.p50)*1.05);
+  const x=i=>m.l+i/n*(W-m.l-m.r),y=v=>Hh-m.b-(Math.max(0,v)/ymax)*(Hh-m.t-m.b);
+  const path=a=>Array.from(a).map((v,i)=>(i?'L':'M')+x(i).toFixed(1)+' '+y(v).toFixed(1)).join('');
+  let grid='';
+  for(let t=0;t<=3;t++){const v=ymax*t/3,yy=y(v);grid+=`<line x1="${m.l}" x2="${W-m.r}" y1="${yy}" y2="${yy}" stroke="var(--line)"/><text x="${m.l-8}" y="${yy+4}" text-anchor="end" font-size="12" fill="var(--mute)">${fm(v)}</text>`;}
+  let xt='';
+  for(let a=Math.ceil(P.age/10)*10;a<=P.end;a+=10)xt+=`<text x="${x(a-P.age)}" y="${Hh-8}" text-anchor="middle" font-size="12" fill="var(--mute)">${a}</text>`;
+  const rx=x(P.retire-P.age),sx=x(S.ui.age-P.age),be=breakAge();
+  let bem='';
+  if(be.age){const bx=x(be.i),by=y(cu.p50[be.i]);bem=`<circle cx="${bx}" cy="${by}" r="5" fill="#fff" stroke="var(--accent)" stroke-width="3"/><text x="${bx}" y="${by-12}" text-anchor="middle" font-size="12" font-weight="600" fill="var(--ink)">Breaks even at ${be.age}</text>`;}
+  const dr=firstDraw?'class="draw" pathLength="1"':'';firstDraw=false;
+  const back=Array.from(cu.p50).map((v,i)=>i).reverse().map(i=>'L'+x(i).toFixed(1)+' '+y(cu.p50[i]).toFixed(1)).join(' ');
+  const gap=none?'':`<path d="${path(ci.p50)} ${back} Z" fill="rgba(64,88,129,.12)"/>`;
+  return `<div class="ev-top"><div class="legend"><span><i style="background:repeating-linear-gradient(90deg,var(--navy-800) 0 6px,transparent 6px 12px)"></i>Current</span><span><i style="background:var(--navy-900)"></i>${none?'Plan (same as current)':'Plan'}</span></div>${seg('mk','data-scen="1"','Market conditions',[{v:'bear',label:'Weak'},{v:'base',label:'Expected'},{v:'bull',label:'Strong'}],S.ui.scen,true)}</div>
+  <svg id="chart" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="Line chart of typical after-tax wealth for the current mix and the plan, ages ${P.age} to ${P.end}">
+    ${grid}${xt}
+    <line x1="${rx}" x2="${rx}" y1="${m.t}" y2="${Hh-m.b}" stroke="var(--mute)" stroke-dasharray="3 4"/>
+    <text x="${rx+6}" y="${m.t+10}" font-size="12" fill="var(--mute)">Retire at ${P.retire}</text>
+    <line x1="${sx}" x2="${sx}" y1="${m.t}" y2="${Hh-m.b}" stroke="var(--ink)" stroke-opacity=".35"/>
+    ${gap}
+    <path d="${path(ci.p50)}" fill="none" stroke="var(--navy-800)" stroke-width="2.5" stroke-dasharray="6 6" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="${path(cu.p50)}" ${dr} fill="none" stroke="var(--navy-900)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    ${bem}
+    <line id="hov" x1="0" x2="0" y1="${m.t}" y2="${Hh-m.b}" stroke="var(--ink)" stroke-opacity=".6" visibility="hidden"/>
+  </svg>
+  <div class="read" id="read">Move across the chart to read any age.</div>`;
+}
+function wireChart(){
+  const svg=$('#chart');if(!svg)return;
+  const P=S.persona,n=nEnd(),W=CHW,m={l:52,r:14};
+  const mv=e=>{
+    const r=svg.getBoundingClientRect(),px=(e.clientX-r.left)/r.width*W;
+    let i=Math.round((px-m.l)/(W-m.l-m.r)*n);i=Math.max(0,Math.min(n,i));
+    const xx=m.l+i/n*(W-m.l-m.r),h=$('#hov');h.setAttribute('x1',xx);h.setAttribute('x2',xx);h.setAttribute('visibility','visible');
+    const a=R.ci.p50[i],b=R.cur.p50[i];
+    $('#read').innerHTML=`Age ${P.age+i}: current ${fm(a)}, plan ${fm(b)}, difference <b class="${b-a>=0?'pos':'neg'}">${fm(b-a,{sign:true})}</b>`;
+  };
+  svg.addEventListener('pointermove',mv);svg.addEventListener('pointerdown',mv);
+  svg.addEventListener('pointerleave',()=>$('#hov').setAttribute('visibility','hidden'));
+}
+function evidenceHTML(){
+  const P=S.persona,ci=R.ci,cu=R.cur,age=S.ui.age,i=age-P.age;
+  const dTy=cu.p50[i]-ci.p50[i];
+  return `<section class="sect evidence pair" aria-labelledby="ev-t">
+    <div class="sect-head"><div class="sect-h"><h2 id="ev-t">Projected outcomes</h2></div>
+    <p class="lede">Typical after-tax wealth in today’s dollars across ${S.mkt.paths} simulated markets. ${breakText()}</p></div>
+    <div class="sect-body"><div class="card ev-card">${chartHTML()}
+      <div class="pills" role="group" aria-label="Retirement age"><span class="l">At age</span>${R.ages.map(a=>`<button class="pill" data-age="${a}" aria-pressed="${a===age}">${a}</button>`).join('')}<label class="age-other"><span class="l">or type an age</span><input class="age-in ${R.ages.includes(age)?'':'on'}" id="age-in" type="number" inputmode="numeric" min="${P.age}" max="${P.end}" step="1" value="${R.ages.includes(age)?'':age}" placeholder="${P.end}" data-agein="1" aria-label="Type any age from ${P.age} to ${P.end}"></label></div>
+      <div class="scroll"><table class="facts"><thead><tr><th><span class="sr">Measure</span></th><th>Current</th><th class="plan">Plan</th></tr></thead><tbody>
+        <tr><td>Typical outcome</td><td class="num">${fm(ci.p50[i])}</td><td class="num plan"><b>${fm(cu.p50[i])}</b> <span class="delta ${tone(dTy)}">${fm(dTy,{sign:true})}</span></td></tr>
+        <tr><td>Downside outcome<small>1 in 10 markets does worse</small></td><td class="num">${fm(ci.p10[i])}</td><td class="num plan"><b>${fm(cu.p10[i])}</b></td></tr>
+        <tr><td>Chance savings last<small>Share of simulated markets to this age</small></td><td class="num">${pc(fundedAt(ci,age),0)}</td><td class="num plan"><b>${pc(fundedAt(cu,age),0)}</b></td></tr>
+      </tbody></table></div>
+    </div></div></section>`;
+}
+
+/* ----- accordions ----- */
+function acc(id,title,right,body){
+  return `<details class="acc" id="acc-${id}" data-acc="${id}" ${S.ui.open[id]?'open':''}><summary><span>${title}</span><span class="acc-r num">${right}</span></summary><div class="acc-b">${body}</div></details>`;
+}
+function costParts(){
+  const cu=R.cur,c=cu.prep.cost;
+  return [['Capital gains tax',c.cg],['Exit and surrender charges',c.exit],['Transaction costs',c.txn],['Annuity exchange tax',c.annTax],['Roth conversion tax',cu.det.convTax],['Advisory fees over time, present value',cu.det.advPV]].filter(r=>r[1]>.5);
+}
+function calcLines(){
+  const P=S.persona,F=S.fees,tx=taxRates(),dec=effDec(),mf=H('mf'),an=H('ann'),ira=H('ira');
+  const sec=(t,items)=>`<div><p class="h4">${t}</p><div class="list" style="margin-top:8px">${items.map(r=>`<div><span>${r[0]}</span><b class="num">${r[1]}</b></div>`).join('')}</div></div>`;
+  const f=x=>fm(x,{full:true});let out='';
+  if(dec.mf&&mf.value>0){const gain=Math.max(0,mf.value-mf.basis),cg=gain*tx.ltcg,ex=mf.value*mf.exit,tr=mf.value*F.txn;
+    out+=sec('Mutual fund',[['Sale value',f(mf.value)],['Cost basis',f(mf.basis)],['Taxable gain',f(gain)],[`Tax at ${pc(tx.ltcg)} (federal ${pc(tx.ltFed)} plus state ${pc(P.stateRate)})`,f(cg)],[`Exit charge at ${pc(mf.exit)}`,f(ex)],[`Transaction cost at ${pc(F.txn)}`,f(tr)],['Reinvested in the new fund',f(mf.value-cg-ex-tr)]]);}
+  if(dec.ann&&an.value>0){const ex=an.value*an.exit,tax=F.x1035?0:Math.max(0,an.value-an.basis)*tx.ordNow;
+    out+=sec('Fixed annuity',[['Contract value',f(an.value)],[`Exit charge at ${pc(an.exit)}`,f(ex)],[F.x1035?'Tax (1035 exchange, none due)':`Tax on gain at ${pc(tx.ordNow)}`,f(tax)],['Moved to the new contract',f(an.value-ex-tax)]]);}
+  if(dec.ira>0&&ira.value>0){const yrs=Math.max(1,Math.min(F.convYears,P.retire-P.age)),per=ira.value*dec.ira/yrs,fed=fedTax(P.baseInc+per,P.filing)-fedTax(P.baseInc,P.filing),st=per*P.stateRate;
+    out+=sec('Roth conversion',[[`Converted each year, over ${yrs} years`,f(per)],['Federal tax each year (2026 brackets)',f(fed)],[`State tax each year at ${pc(P.stateRate)}`,f(st)],['Total conversion tax in the model',f(R.cur.det.convTax)]]);}
+  return out||'<p class="lede">Nothing is switched.</p>';
+}
+function costsBody(){
+  if(isNone())return '<p class="lede">Nothing is switched, so nothing is spent.</p>';
+  const parts=costParts(),tot=parts.reduce((s,r)=>s+r[1],0);
+  const a=blend({mf:0,ann:0,ira:0}),b=blend(effDec());
+  return `<div class="list">${parts.map(r=>`<div><span>${r[0]}</span><b class="num">${fm(r[1],{full:true})}</b></div>`).join('')}<div class="tot"><span>Total</span><span class="num">${fm(tot,{full:true})}</span></div></div>
+  <div><p class="h4">Expected yearly return</p><div class="scroll"><table><thead><tr><th><span class="sr">Step</span></th><th>Current</th><th class="plan">Plan</th></tr></thead><tbody>
+    <tr><td>Before costs</td><td class="num">${pc(a.gross,2)}</td><td class="num plan">${pc(b.gross,2)}</td></tr>
+    <tr><td>Ongoing fees and expenses</td><td class="num">${pc(a.fee,2)}</td><td class="num plan">${pc(b.fee,2)}</td></tr>
+    <tr><td>After fees and tax drag</td><td class="num">${pc(a.net,2)}</td><td class="num plan">${pc(b.net,2)}</td></tr>
+    <tr><td>After switching costs, over 10 years</td><td class="num">${pc(a.adj,2)}</td><td class="num plan">${pc(b.adj,2)}</td></tr>
+  </tbody></table></div></div>
+  <details class="sub-acc"><summary>Show the calculation</summary><div class="acc-b" style="padding:0 0 16px">${calcLines()}</div></details>`;
+}
+function agesBody(){
+  const P=S.persona,ci=R.ci,cu=R.cur;
+  return `<div class="scroll"><table><thead><tr><th>Age</th><th>Current</th><th class="plan">Plan</th><th>Difference</th><th>Savings last</th></tr></thead><tbody>${R.ages.map((a,q)=>{
+    const i=a-P.age,d=cu.p50[i]-ci.p50[i];
+    return `<tr><td>${a}</td><td class="num">${fm(ci.p50[i])}</td><td class="num plan">${fm(cu.p50[i])}</td><td class="num ${tone(d)}">${fm(d,{sign:true})}</td><td class="num">${pc(ci.funded[q],0)} / ${pc(cu.funded[q],0)}</td></tr>`;}).join('')}</tbody></table></div>
+  <p class="lede">Typical results after liquidation tax. Savings last shows current / plan.</p>`;
+}
+function histData(){
+  const mf=H('mf');if(mf.value<=0)return null;
+  return [1,3,5,10].map(backtest);
+}
+function histBody(){
+  const mf=H('mf'),ps=histData();
+  if(!ps)return '<p class="lede">This client holds no fund to test.</p>';
+  const ten=ps[3];
+  const n=nEnd(),fwd=R.cand['100']?R.cand['100'].p50[n]-R.ci.p50[n]:null;
+  const diverge=ps.filter(p=>p.n>=5).every(p=>p.pi.end>p.ci.end)&&fwd!=null&&fwd<0;
+  const m=(l,a,b)=>`<tr><td>${l}</td><td class="num">${a}</td><td class="num plan">${b}</td></tr>`;
+  return `<p class="lede">${esc(mf.ci.name)} against ${esc(mf.pi.name)}, calendar years ${ten.from} to ${ten.to}. Values are what the client would keep after fees, tax on dividends, exit and transaction costs, and capital gains tax.</p>
+  <div class="scroll"><table><thead><tr><th>Window</th><th>Current</th><th class="plan">Plan</th><th>Difference</th></tr></thead><tbody>${ps.map(p=>`<tr><td>${p.n} year${p.n>1?'s':''}</td><td class="num">${fm(p.ci.end)}</td><td class="num plan">${fm(p.pi.end)}</td><td class="num ${p.pi.end-p.ci.end>=0?'pos':'neg'}">${fm(p.pi.end-p.ci.end,{sign:true})}</td></tr>`).join('')}</tbody></table></div>
+  <div><p class="h4">Risk over ten years</p><div class="scroll"><table><thead><tr><th><span class="sr">Measure</span></th><th>Current</th><th class="plan">Plan</th></tr></thead><tbody>
+    ${m('Yearly return',spc(ten.ci.cagr),spc(ten.pi.cagr))}
+    ${m('Ups and downs (volatility)',pc(ten.ci.vol),pc(ten.pi.vol))}
+    ${m('Worst drop',pc(ten.ci.mdd),pc(ten.pi.mdd))}
+    ${m('Years to win back switching costs','n/a',ten.be==null?'Not reached':ten.be+' yr'+(ten.be===1?'':'s'))}
+  </tbody></table></div></div>
+  ${diverge?`<p class="note warn">History favors the plan in every window of five years or more, but the forward projection favors keeping the fund. This sample includes a long run of large-company growth outperformance. Treat history as evidence, not a forecast.</p>`:''}
+  <p class="note">Past results do not guarantee future performance. Annual data understates drops within a year. Only the fund has a historical series here. The other holdings enter through the forward projection.</p>`;
+}
+function testedBody(){
+  const n=nEnd(),ci=R.ci,P=S.persona;
+  const list=Object.values(R.cand).sort((a,b)=>b.score-a.score).slice(0,6);
+  const label=c=>key(c.d)==='000'?'Keep current investments':describe(c.d).replace(/^./,x=>x.toUpperCase());
+  return `<p class="lede">We tested ${Object.keys(R.cand).length} combinations of the available moves and ranked them by a risk-weighted blend of typical and downside outcomes at age ${P.end}. The top ${list.length} are shown.</p><div class="scroll"><table><thead><tr><th>Plan</th><th>Versus current at ${P.end}</th><th>Chance savings last</th></tr></thead><tbody>${list.map(c=>`<tr class="${c===R.best?'hl':''}"><td>${label(c)}${c===R.best?' <span class="tag">Recommended</span>':''}</td><td class="num ${tone(c.p50[n]-ci.p50[n])}">${fm(c.p50[n]-ci.p50[n],{sign:true})}</td><td class="num">${pc(c.success,0)}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function detDiff(dec){
+  const keep=S.ui.scen,n=nEnd();S.ui.scen='base';
+  const a=run(prepare({mf:0,ann:0,ira:0}),null,0).w[n],b=run(prepare(dec),null,0).w[n];
+  S.ui.scen=keep;return b-a;
+}
+function bisect(f,lo,hi){if(f(lo)>=0)return lo;if(f(hi)<0)return null;for(let i=0;i<14;i++){const m=(lo+hi)/2;if(f(m)>=0)hi=m;else lo=m;}return hi;}
+function getThr(){
+  if(R.thr)return R.thr;
+  const P=S.persona,mf=H('mf'),ira=H('ira'),out=[],who=P.name;
+  if(mf.value>0){
+    const o=mf.pi.mu,x=bisect(m=>{mf.pi.mu=m;return detDiff({mf:1,ann:0,ira:0});},0,.25);mf.pi.mu=o;
+    if(x===null)out.push('The fund switch would not pay off at any expected return up to 25% a year.');
+    else if(x<=o)out.push(`The fund switch pays off as long as the new fund earns at least ${pc(x)} a year before costs. We assume ${pc(o)}.`);
+    else out.push(`The fund switch pays off only if the new fund earns at least ${pc(x)} a year before costs. We assume ${pc(o)}, against ${pc(mf.ci.mu)} for the current fund.`);
+  }
+  if(ira.value>0){
+    const o=P.retOrd,x=bisect(r=>{P.retOrd=r;return detDiff({mf:0,ann:0,ira:1});},0,.5);P.retOrd=o;
+    if(x===null)out.push('Converting the whole IRA would not pay off at any retirement tax rate up to 50%.');
+    else if(x<=o)out.push(`Converting the IRA pays off as long as ${who}’s federal tax rate in retirement stays above ${pc(x)}. We assume ${pc(o)}.`);
+    else out.push(`Converting the IRA pays off only if ${who}’s federal tax rate in retirement is above ${pc(x)}. We assume ${pc(o)}.`);
+  }
+  R.thr=out;return out;
+}
+function getStress(){
+  if(R.stress)return R.stress;
+  const n=nEnd(),keepS=S.stress,keepM=S.ui.scen,dec=effDec(),P=S.persona;
+  S.ui.scen='base';
+  const defs=[['Market drop in the first year of retirement','Risky assets fall about 30% in the year retirement begins.',a=>a===P.retire?-.3:0],['Three weak years at the start of retirement','Risky assets lose about 12% a year for the first three years.',a=>(a>=P.retire&&a<P.retire+3)?-.12:0]];
+  R.stress=defs.map(([name,desc,fn])=>{S.stress=fn;const a=evaluate({mf:0,ann:0,ira:0}),b=evaluate(dec);return {name,desc,ci:a.p50[n],pl:b.p50[n],cs:a.success,ps:b.success};});
+  S.stress=keepS;S.ui.scen=keepM;return R.stress;
+}
+function refreshStress(){
+  const b=document.querySelector('#acc-stress .acc-b');
+  if(!b)return;
+  if(R.stress){b.innerHTML=stressBody();return;}
+  b.innerHTML='<p class="lede">Running stress tests…</p>';
+  setTimeout(()=>{const bb=document.querySelector('#acc-stress .acc-b');if(bb&&S.ui.open.stress)bb.innerHTML=stressBody();},30);
+}
+function stressBody(){
+  if(!S.ui.open.stress)return '<p class="lede">Stress tests run when you open this section.</p>';
+  const st=getStress(),thr=getThr(),n=nEnd();
+  return `<p class="lede">Both mixes face the same shock, starting from expected markets. Results are typical outcomes at age ${S.persona.end} in today’s dollars.</p>
+  <div class="scroll"><table class="wrapfirst"><thead><tr><th>Stress test</th><th>Current</th><th class="plan">Plan</th><th>Savings last, current / plan</th></tr></thead><tbody>${st.map(r=>`<tr><td>${r.name}<small>${r.desc}</small></td><td class="num">${fm(r.ci)}</td><td class="num plan">${fm(r.pl)}</td><td class="num">${pc(r.cs,0)} / ${pc(r.ps,0)}</td></tr>`).join('')}</tbody></table></div>
+  <div><p class="h4">What would change the answer</p><ul class="bul" style="margin-top:8px">${thr.length?thr.map(t=>`<li>${esc(t)}</li>`).join(''):'<li>No single input flips the result. Review the other assumptions.</li>'}</ul></div>`;
+}
+function accHTML(){
+  const parts=costParts(),tot=parts.reduce((s,r)=>s+r[1],0),ps=histData();
+  return `<section class="sect wide" aria-label="Supporting detail" style="gap:12px">`
+    +acc('costs','Cost of switching',isNone()?'None':fm(tot),costsBody())
+    +acc('ages','Results by retirement age','',agesBody())
+    +acc('tested','Other plans we tested',Object.keys(R.cand).length+' plans',testedBody())
+    +acc('stress','Stress tests and what would change the answer','2 tests',stressBody())
+    +acc('hist','Historical back-test of the fund switch',ps?`10 years: ${fm(ps[3].pi.end-ps[3].ci.end,{sign:true})}`:'',histBody())
+    +`</section>`;
+}
+const AVATARS={
+alex:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" fill="#d9e3ef"/><path d="M5 64c1-13 11-21 27-21s26 8 27 21z" fill="#06163a"/><path d="M25.500 44.500 32 55l6.500-10.500L35 42h-6z" fill="#fff"/><path d="M28 36h8v8a4 4 0 0 1-8 0z" fill="#e3ad84"/><ellipse cx="32" cy="27.500" rx="10.500" ry="12" fill="#f0c4a0"/><path d="M21.200 26c-1.600-10 5-15.500 11.500-15.200 7 .2 11.500 5.500 10 15.200-1.200-4.500-3.600-7-7.500-7.800-4 1.600-9.500 1.800-14 7.800z" fill="#4a3426"/><circle cx="27.800" cy="28.500" r="1.200" fill="#2a1d16"/><circle cx="36.200" cy="28.500" r="1.200" fill="#2a1d16"/><path d="M28.200 34c2.200 1.900 5.400 1.900 7.600 0" stroke="#a5654a" stroke-width="1.300" fill="none" stroke-linecap="round"/></svg>`,
+maya:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" fill="#e4e9f1"/><path d="M15.500 31c-1.500-15 7-22.500 16.500-22.500S48.500 16 48.500 31c0 9 2 15 5 20H10.500c3-5 5-11 5-20z" fill="#2b1b17"/><path d="M6 64c1.500-12 11-19 26-19s24.500 7 26 19z" fill="#405881"/><path d="M28 36h8v8a4 4 0 0 1-8 0z" fill="#c78f66"/><ellipse cx="32" cy="27.500" rx="10" ry="11.800" fill="#d9a47a"/><path d="M21.500 25.500c1-8.500 7-12.500 12.500-11.800 5.500.7 8.500 5.500 8.500 11.800-2.500-3.500-5-5.500-9.500-6-4.500 0-8 1.200-11.500 6z" fill="#2b1b17"/><circle cx="27.800" cy="28.800" r="1.200" fill="#2a1d16"/><circle cx="36.200" cy="28.800" r="1.200" fill="#2a1d16"/><path d="M28.200 34.200c2.200 1.900 5.400 1.900 7.600 0" stroke="#9c4f3f" stroke-width="1.300" fill="none" stroke-linecap="round"/></svg>`,
+rohan:`<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="64" height="64" fill="#dde4ee"/><path d="M5 64c1-13 11-21 27-21s26 8 27 21z" fill="#6c82a6"/><path d="M28 36h8v8a4 4 0 0 1-8 0z" fill="#a46f4a"/><ellipse cx="32" cy="27.500" rx="10.500" ry="12" fill="#b8825b"/><path d="M21.500 26c-1.500-10 4.500-15 10.500-15 6.500 0 11.500 5 10.500 15-1.500-4.500-4.500-7-10.500-7s-8 2.500-10.500 7z" fill="#1a1411"/><path d="M21.800 29c.5 8.500 4.500 13.500 10.200 13.500S41.700 37.500 42.200 29c-1.800 3.500-4.500 5-10.200 5s-8.400-1.500-10.200-5z" fill="#1a1411"/><circle cx="27.800" cy="26.800" r="1.200" fill="#1a1411"/><circle cx="36.200" cy="26.800" r="1.200" fill="#1a1411"/><path d="M28.800 36.500c1.800 1.200 4.600 1.200 6.400 0" stroke="#d9a58a" stroke-width="1.200" fill="none" stroke-linecap="round"/></svg>`
+};
+const todayStr=()=>new Date().toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+function renderBand(){
+  const P=S.persona;
+  $('#cAv').innerHTML=AVATARS[S.pid]||'';
+  $('#cName').textContent=P.full||P.name;
+  $('#cMeta').textContent='Age '+P.age+', '+STATES[P.state].n;
+  $('#clist').innerHTML=Object.keys(PRESETS).map(k=>{const q=PRESETS[k].persona;return `<li role="option" tabindex="-1" data-id="${k}" aria-selected="${k===S.pid}"><span class="av">${AVATARS[k]}</span><span class="ct"><span class="cn">${esc(q.full)}</span><span class="cm">Age ${q.age}, retiring at ${q.retire}, ${esc(STATES[q.state].n)}</span></span></li>`;}).join('');
+}
+let CHEX=0;
+function freeSpace(){
+  const card=document.querySelector('.ev-card');
+  if(!card||!window.matchMedia('(min-width:1024px)').matches)return 0;
+  const t=card.querySelector('.scroll:last-child'),p=card.querySelector('.pills');
+  if(!t||!p)return 0;
+  return Math.round(t.getBoundingClientRect().top-p.getBoundingClientRect().bottom-16);
+}
+function renderMain(){
+  CHEX=0;renderMainOnce();
+  const f=freeSpace();
+  if(f>6){CHEX=Math.min(320,f);renderMainOnce();}
+}
+function renderMainOnce(){
+  renderBand();
+  $('#app').innerHTML=heroHTML()+decisionHTML()+evidenceHTML()+accHTML();
+  wireChart();
+  const hh=$('.hero-h');if(hh)$('#announce').textContent=hh.textContent;
+  $('#foot').innerHTML=`<p>Projections are estimates based on 2026 U.S. federal tax rules and ${S.mkt.paths} simulated markets. They are not guarantees of future results and are not investment, tax or legal advice.</p><div class="foot-row"><span class="foot-links"><button class="linkbtn" data-act="how">How this works</button><button class="linkbtn" data-act="open-assump">Assumptions</button><button class="linkbtn" data-act="open-summary">Client proposal</button></span><span>Draft prepared ${todayStr()}. Model 1.0, tax year 2026.</span></div>`;
+}
+
+/* ---------- assumptions sheet ---------- */
+function get(o,p){return p.split('.').reduce((a,k)=>a==null?a:a[k],o);}
+function setp(o,p,v){const ks=p.split('.');const l=ks.pop();ks.reduce((a,k)=>a[k],o)[l]=v;}
+function fld(label,path,o={}){
+  const v=get(S,path),val=o.pct?+(v*100).toFixed(4):v;
+  return `<label class="fld"><span>${label}</span><div class="inp"><input type="${o.text?'text':'number'}" ${o.text?'':'inputmode="decimal" step="any"'} value="${esc(val)}" data-bind="${path}" ${o.pct?'data-pct="1"':''} ${o.min!=null?`min="${o.min}"`:''} ${o.max!=null?`max="${o.max}"`:''}>${o.suf?`<em>${o.suf}</em>`:''}</div><small>${o.hint||''}</small></label>`;
+}
+function sel(label,path,opts,hint){
+  const v=get(S,path);
+  return `<label class="fld"><span>${label}</span><div class="inp"><select data-bind="${path}" data-str="1">${opts.map(([a,b])=>`<option value="${a}" ${String(v)===String(a)?'selected':''}>${esc(b)}</option>`).join('')}</select></div><small>${hint||''}</small></label>`;
+}
+function derivedHTML(){
+  const tx=taxRates(),P=S.persona;
+  const conv=fedTax(P.baseInc+40000,P.filing)-fedTax(P.baseInc,P.filing)+40000*P.stateRate;
+  return `<div class="derived"><div><b class="num">${pc(tx.ltcg,1)}</b>Tax on investment gains</div><div><b class="num">${pc(tx.ordNow,1)}</b>Tax rate on extra income today</div><div><b class="num">${pc(tx.ordRet,1)}</b>Tax rate on IRA withdrawals later</div><div><b class="num">${fm(conv)}</b>Tax on a $40,000 conversion</div></div>`;
+}
+function holdingFields(h,i){
+  const b=`holdings.${i}.`;let f='';
+  f+=fld('Current value',b+'value',{suf:'$',min:0});
+  if(h.id==='mf'||h.id==='ann')f+=fld('Cost basis',b+'basis',{suf:'$',min:0});
+  if(h.id==='mf'||h.id==='ann')f+=fld('Exit charge',b+'exit',{pct:1,suf:'%',min:0,max:10});
+  if(h.id==='ann'){
+    f+=fld('Yearly payout at retirement',b+'payout',{pct:1,suf:'%',min:0,max:15,hint:'Share of the value paid each year for life.'});
+    f+=fld('Current fixed rate',b+'ci.rate',{pct:1,suf:'%',min:0,max:12});
+    f+=fld('Proposed fixed rate',b+'pi.rate',{pct:1,suf:'%',min:0,max:12});
+  }else{
+    f+=fld('Current expected return',b+'ci.mu',{pct:1,suf:'%',min:-5,max:25});
+    f+=fld('Current volatility',b+'ci.vol',{pct:1,suf:'%',min:0,max:80});
+    f+=fld('Current expense ratio',b+'ci.exp',{pct:1,suf:'%',min:0,max:5});
+    if(h.id==='mf')f+=fld('Current dividend yield',b+'ci.yld',{pct:1,suf:'%',min:0,max:10});
+    if(h.id==='mf'||h.id==='ira'){
+      f+=fld('Proposed expected return',b+'pi.mu',{pct:1,suf:'%',min:-5,max:25});
+      f+=fld('Proposed volatility',b+'pi.vol',{pct:1,suf:'%',min:0,max:80});
+      f+=fld('Proposed expense ratio',b+'pi.exp',{pct:1,suf:'%',min:0,max:5});
+    }
+    if(h.id==='mf')f+=fld('Proposed dividend yield',b+'pi.yld',{pct:1,suf:'%',min:0,max:10});
+    if(h.id==='mf'&&h.alts)h.alts.forEach((al,k)=>{const q=b+'alts.'+k+'.';f+=fld(al.short+' expected return',q+'mu',{pct:1,suf:'%',min:-5,max:25})+fld(al.short+' volatility',q+'vol',{pct:1,suf:'%',min:0,max:80})+fld(al.short+' expense ratio',q+'exp',{pct:1,suf:'%',min:0,max:5});});
+  }
+  return f;
+}
+function liveHTML(){
+  const P=S.persona,n=nEnd(),d=R.cur.p50[n]-R.ci.p50[n];
+  const msgs=(S.notes||[]).map(m=>`<p class="msg">${esc(m)}</p>`).join('');
+  return `<b class="num">${isNone()?'Nothing switched':`Plan vs current at ${P.end}: ${fm(d,{sign:true})}`}</b><span>Recommended: ${esc(describe(R.best.d))}</span><span class="stat"></span>${msgs}`;
+}
+function assumpSheet(){
+  const stOpts=Object.keys(STATES).map(k=>[k,STATES[k].n]);
+  const sec=(id,title,hint,body,open)=>`<details class="acc" id="sec-${id}" ${open?'open':''}><summary><span>${title}</span><span class="acc-r">${hint}</span></summary><div class="acc-b">${body}</div></details>`;
+  return `<div class="sh-h"><div><h2 id="sheet-title">Assumptions</h2><p class="sh-sub">The review updates as you edit.</p></div><button class="btn ibtn" data-close aria-label="Close assumptions"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="sh-b"><div class="live" id="live" aria-live="polite">${liveHTML()}</div>
+  ${sec('ess','Client essentials','Ages, spending, state, risk',`<div class="flds">
+      ${fld('Current age','persona.age',{min:18,max:84})}
+      ${fld('Retirement age','persona.retire',{min:19,max:85})}
+      ${fld('Yearly spending in retirement','persona.spend',{suf:'$',min:0,hint:'After tax, today’s dollars.'})}
+      ${fld('Other income a year','persona.ssAmt',{suf:'$',min:0,hint:'Social Security or pension, after tax.'})}
+      ${fld('Other income starts at age','persona.ssAge',{min:62,max:70})}
+      ${sel('State','persona.state',stOpts,'Changing it resets the state tax rate.')}
+      ${sel('Comfort with risk','persona.risk',[['Conservative','Conservative'],['Moderate','Moderate'],['Aggressive','Aggressive']],'Weights downside outcomes in the recommendation.')}
+      ${fld('Cash to keep within reach','persona.liq',{suf:'$',min:0,hint:'Triggers a warning if a plan dips below it.'})}
+    </div>`,true)}
+  ${sec('tax','Taxes','2026 federal rules',`<div class="flds">
+      ${sel('Filing status','persona.filing',[['single','Single'],['mfj','Married filing jointly']])}
+      ${fld('Taxable income before conversions','persona.baseInc',{suf:'$',min:0,hint:'After deductions.'})}
+      ${fld('Tax rate on IRA withdrawals later','persona.retOrd',{pct:1,suf:'%',min:0,max:50,hint:'Federal effective rate.'})}
+      ${fld('State income tax rate','persona.stateRate',{pct:1,suf:'%',min:0,max:20,hint:'Flat planning rate, approximate.'})}
+    </div><div id="derived">${derivedHTML()}</div>`)}
+  ${sec('mkt','Markets','Inflation, weak and strong cases',`<div class="flds">
+      ${fld('Inflation','persona.infl',{pct:1,suf:'%',min:0,max:10})}
+      ${fld('Weak markets shift returns by','mkt.bear',{pct:1,suf:'%',min:-10,max:0})}
+      ${fld('Strong markets shift returns by','mkt.bull',{pct:1,suf:'%',min:0,max:10})}
+      ${fld('How closely assets move together','mkt.corr',{min:0,max:.95,hint:'0 to 0.95.'})}
+      ${fld('Simulated markets','mkt.paths',{min:200,max:2000,hint:'More is slower.'})}
+      ${fld('Discount rate for fees','mkt.disc',{pct:1,suf:'%',min:0,max:15})}
+    </div>`)}
+  ${sec('cost','Switching costs','Fees and conversion terms',`<div class="flds">
+      ${fld('Advisory fee on the switched fund','fees.adv',{pct:1,suf:'%',min:0,max:3,hint:'Per year.'})}
+      ${fld('Transaction cost on sales','fees.txn',{pct:1,suf:'%',min:0,max:3})}
+      ${fld('Roth conversion spread','fees.convYears',{suf:'years',min:1,max:10})}
+    </div><label class="sw"><input type="checkbox" data-bind="fees.x1035" ${S.fees.x1035?'checked':''}><span>The annuity exchange qualifies as a tax-free 1035 exchange</span></label>`)}
+  ${sec('prod','Product terms','Values, returns, fees',`<p class="lede">Expected returns are illustrative. Replace them with your firm’s capital market assumptions.</p>${S.holdings.map((h,i)=>`<details class="sub-acc"><summary>${esc(h.label)}</summary><div class="flds">${holdingFields(h,i)}</div></details>`).join('')}`)}
+  ${sec('method','How this works','Method and disclosures',`<div class="method">
+      <p><b>Question.</b> Does the plan beat keeping the current mix at ages ${R.ages.join(', ')} after taxes, exit charges, fees, liquidity limits and retirement income?</p>
+      <p><b>Projection.</b> ${S.mkt.paths} simulated markets. Both mixes face identical markets and identical spending. Results are in today’s dollars after liquidation tax.</p>
+      <p><b>Recommendation rule.</b> Among plans within one point of the highest chance that money lasts, pick the best blend of typical and bad-luck wealth at 90, weighted by risk comfort. A change must beat keeping everything by at least 1% or $2,000.</p>
+      <p><b>History.</b> Calendar-year total returns for the S&amp;P 500 and Nasdaq-100, 2015 to 2025, rounded. Past results do not guarantee future performance.</p>
+      <p><b>Taxes.</b> Federal brackets and capital gains thresholds for tax year 2026. State rates are flat approximations. Required minimum distributions, Medicare surcharges and Social Security taxation are not modeled.</p>
+      <p><b>Data.</b> The three clients are synthetic and hold no personal information. Product terms are illustrative. The annuity’s fixed rate is read as a credited rate with an assumed payout rate.</p>
+      <p><b>AI-assisted work.</b> This tool was designed and written with an AI assistant. Not investment, tax or legal advice.</p>
+    </div>`)}
+  <div><button class="btn" data-act="reset">Reset to the ${esc(S.persona.name)} preset</button></div></div>`;
+}
+function refreshSheet(){
+  if(S.ui.sheet!=='assump')return;
+  const l=$('#live');if(l)l.innerHTML=liveHTML();
+  const d=$('#derived');if(d)d.innerHTML=derivedHTML();
+}
+function syncInputs(){
+  document.querySelectorAll('#sheet [data-bind]').forEach(el=>{
+    if(el===document.activeElement||el.type==='checkbox'||el.tagName==='SELECT')return;
+    const v=get(S,el.dataset.bind);el.value=el.dataset.pct?+(v*100).toFixed(4):v;
+  });
+}
+
+/* ---------- summary sheet ---------- */
+function scenarioCheck(){
+  const keep=S.ui.scen,n=nEnd(),out={};
+  for(const sc of ['bear','base','bull']){
+    S.ui.scen=sc;
+    const a=evaluate({mf:0,ann:0,ira:0}),b=evaluate(effDec());
+    out[sc]={ci:a.p50[n],pl:b.p50[n]};
+  }
+  S.ui.scen=keep;return out;
+}
+function summaryData(){
+  const P=S.persona,n=nEnd(),cur=R.cur,ci=R.ci,d=cur.p50[n]-ci.p50[n],v=verdict(),dec=effDec();
+  const parts=costParts(),tot=parts.reduce((s,r)=>s+r[1],0),sc=scenarioCheck();
+  const bd=R.best.p50[n]-ci.p50[n],bestNone=key(R.best.d)==='000',who=P.name;
+  const planTxt=isNone()?'Keep every holding as it is':describe(dec).replace(/^./,c=>c.toUpperCase());
+  let rec;
+  if(isNone())rec=bestNone?'Keep the current investments. No move we tested improves the outcome by a meaningful margin.':`We suggest this plan: ${describe(R.best.d)}. It ${bd>=0?'adds':'costs'} ${fm(Math.abs(bd),{full:true})} by age ${P.end} (typical outcome, today’s dollars).`;
+  else if(isZero())rec=`In the expected case the savings run out before age ${P.end} either way. Savings last to ${P.end} in ${pc(ci.success,0)} of simulated markets with no change and ${pc(cur.success,0)} with this plan.`;
+  else if(v.k==='go')rec=`We recommend proceeding. The plan adds ${fm(d,{full:true})} by age ${P.end} (typical outcome, today’s dollars) after all costs.`;
+  else if(v.k==='stay')rec=`We do not recommend this plan. It would cost ${who} ${fm(-d,{full:true})} by age ${P.end}.${bestNone?' Keeping the current investments performs best.':` A better option: ${describe(R.best.d)}, adding ${fm(bd,{full:true})}.`}`;
+  else rec=`This plan makes little difference (${fm(d,{sign:true,full:true})} by age ${P.end}). The costs and effort are unlikely to be worth it.`;
+  const goal=`${who} plans to retire at ${P.retire} and spend about ${fm(P.spend,{full:true})} a year in today’s dollars${P.ssAmt>0?`, with ${fm(P.ssAmt,{full:true})} a year of other income from age ${P.ssAge}`:''}. The proposal moves holdings into products with higher projected returns, so we tested whether that improves the outcome once taxes, exit charges and fees are counted.`;
+  const mkt=[['bear','Weaker markets'],['base','Expected markets'],['bull','Stronger markets']].map(([k,l])=>sc[k].ci<1000&&sc[k].pl<1000?[l,'Runs out','Runs out','No difference',0]:[l,fm(sc[k].ci),fm(sc[k].pl),fm(sc[k].pl-sc[k].ci,{sign:true}),sc[k].pl-sc[k].ci]);
+  const rows=[['Typical outcome at '+P.end,fm(ci.p50[n]),fm(cur.p50[n])],['Downside outcome at '+P.end,fm(ci.p10[n]),fm(cur.p10[n])],['Chance savings last to '+P.end,pc(ci.success,0),pc(cur.success,0)]];
+  const a=blend({mf:0,ann:0,ira:0}),b=blend(dec);
+  const ret=[['Before costs',pc(a.gross,2),pc(b.gross,2)],['Ongoing fees and expenses',pc(a.fee,2),pc(b.fee,2)],['After fees and tax drag',pc(a.net,2),pc(b.net,2)],['After switching costs, over 10 years',pc(a.adj,2),pc(b.adj,2)]];
+  const kept=[],re=H('re'),al=H('alt');
+  if(re.value>0)kept.push(`real estate (${fm(re.value)})`);
+  if(al.value>0)kept.push(`alternatives (${fm(al.value)})`);
+  const liq=cur.det.minLiq,risks=[];
+  if(isFinite(liq))risks.push(`Liquidity: the lowest easy-to-sell balance before age ${P.retire} is ${fm(liq)}, against the ${fm(P.liq)} ${who} wants within reach.`);
+  if(!isNone())risks.push(`Timing: taxes and charges are paid now, while the benefit builds over decades. ${breakText()}`);
+  if(kept.length)risks.push(`${kept.join(' and ')} stay${kept.length>1?'':'s'} unchanged and ${kept.length>1?'are':'is'} harder to sell quickly.`);
+  risks.push(`These are estimates from ${S.mkt.paths} simulated markets. Actual markets, tax rules and product terms can differ.`);
+  const stress=getStress(),thr=getThr();
+  const change=`The market table shows how the gap moves in weaker and stronger markets. ${thr.join(' ')} The answer also depends on ${who}’s retirement age, spending, tax rates and fees. Update the assumptions and rerun the review before acting.`;
+  const basis=`2026 U.S. federal tax rules, approximate ${STATES[P.state].n} state tax, ${S.mkt.paths} simulated markets, market history 2015 to 2025. Estimates only, not a guarantee of future results. Not investment, tax or legal advice.`;
+  const when=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  const L=[];
+  L.push(`LPL Financial | Transition review for ${P.full||P.name}`,`Age ${P.age}, retiring at ${P.retire}, ${STATES[P.state].n}. Prepared ${when}.`,'');
+  L.push('Recommendation',rec,'');
+  L.push('Why we reviewed this',goal,`Plan reviewed: ${planTxt}.`,'');
+  L.push(`Typical outcome at age ${P.end} by market case (today’s dollars)`);
+  mkt.forEach(r=>L.push(`${r[0]}: current ${r[1]}, plan ${r[2]}, difference ${r[3]}`));
+  L.push('',`Expected markets in detail`);
+  rows.forEach(r=>L.push(`${r[0]}: current ${r[1]}, plan ${r[2]}`));
+  L.push(breakText()||'No move selected.','');
+  L.push('Expected yearly return');
+  ret.forEach(r=>L.push(`${r[0]}: current ${r[1]}, plan ${r[2]}`));
+  L.push('','Cost of switching');
+  if(parts.length){parts.forEach(r=>L.push(`${r[0]}: ${fm(r[1],{full:true})}`));L.push(`Total: ${fm(tot,{full:true})}`);}else L.push('None');
+  L.push('','Stress tests');stress.forEach(r=>L.push(`${r.name}: current ${fm(r.ci)}, plan ${fm(r.pl)}`));
+  L.push('','Risks and trade-offs');risks.forEach(t=>L.push('- '+t));
+  L.push('','What could change this recommendation',change,'','Basis',basis);
+  return {P,rec,goal,planTxt,mkt,rows,ret,parts,tot,risks,change,thr,stress,basis,when,text:L.join('\n')};
+}
+function summarySheet(){
+  const D=summaryData(),P=D.P,logo=document.querySelector('.lpl-logo').outerHTML;
+  const t3=(h,rows,cls)=>`<div class="scroll"><table><thead><tr><th><span class="sr">Measure</span></th><th>Current</th><th class="plan">Plan</th>${cls?'<th>Difference</th>':''}</tr></thead><tbody>${rows}</tbody></table></div>`;
+  return `<div class="sh-h"><div><h2 id="sheet-title">Client proposal</h2><p class="sh-sub">A preview of what ${esc(P.name)} would receive.</p></div><button class="btn ibtn" data-close aria-label="Close proposal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+  <div class="sh-b"><article class="sum" id="sumtxt">
+    <header class="paper-h"><span class="paper-logo">${logo}</span><span class="paper-d">${esc(D.when)}</span></header>
+    <div class="paper-t"><span class="av">${AVATARS[S.pid]||''}</span><div><h3>Transition review for ${esc(P.full||P.name)}</h3><p class="lede">Age ${P.age}, retiring at ${P.retire}, ${esc(STATES[P.state].n)}.</p></div></div>
+    <section><h4>Recommendation</h4><p class="rec-t">${esc(D.rec)}</p></section>
+    <section><h4>Why we reviewed this</h4><p>${esc(D.goal)}</p><p class="lede" style="margin-top:8px">Plan reviewed: ${esc(D.planTxt)}.</p></section>
+    <section><h4>Typical outcome at age ${P.end} by market case</h4>${t3('',D.mkt.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num plan">${r[2]}</td><td class="num ${r[4]>0?'pos':(r[4]<0?'neg':'')}">${r[3]}</td></tr>`).join(''),1)}</section>
+    <section><h4>Expected markets in detail</h4>${t3('',D.rows.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num plan">${r[2]}</td></tr>`).join(''))}<p class="lede" style="margin-top:8px">${esc(breakText())}</p></section>
+    <section><h4>Expected yearly return</h4>${t3('',D.ret.map(r=>`<tr><td>${r[0]}</td><td class="num">${r[1]}</td><td class="num plan">${r[2]}</td></tr>`).join(''))}</section>
+    <section><h4>Cost of switching</h4>${D.parts.length?`<div class="list">${D.parts.map(r=>`<div><span>${r[0]}</span><b class="num">${fm(r[1],{full:true})}</b></div>`).join('')}<div class="tot"><span>Total</span><span class="num">${fm(D.tot,{full:true})}</span></div></div>`:'<p>None</p>'}</section>
+    <section><h4>Stress tests</h4><div class="scroll"><table class="wrapfirst"><thead><tr><th>Test</th><th>Current</th><th class="plan">Plan</th></tr></thead><tbody>${D.stress.map(r=>`<tr><td>${r.name}<small>${r.desc}</small></td><td class="num">${fm(r.ci)}</td><td class="num plan">${fm(r.pl)}</td></tr>`).join('')}</tbody></table></div></section>
+    <section><h4>Risks and trade-offs</h4><ul>${D.risks.map(t=>`<li>${esc(t)}</li>`).join('')}</ul></section>
+    <section><h4>What could change this recommendation</h4>${D.thr.length?`<ul class="bul">${D.thr.map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}<p style="margin-top:8px">${esc('The answer also depends on '+D.P.name+'’s retirement age, spending, tax rates and fees. Update the assumptions and rerun the review before acting.')}</p></section>
+    <p class="fine">${esc(D.basis)}</p>
+  </article>
+  <div class="btnrow"><button class="btn lime lg" data-act="copy-sum">Copy proposal text</button><button class="btn" data-act="copy-json">Copy results as JSON</button></div></div>`;
+}
+function resultsJSON(){
+  const P=S.persona,cur=R.cur,ci=R.ci,d=effDec();
+  const cp=R.ages.map((a,q)=>{const i=a-P.age;return {age:a,
+    current:{p10:Math.round(ci.p10[i]),median:Math.round(ci.p50[i]),p90:Math.round(ci.p90[i]),funded:+ci.funded[q].toFixed(3)},
+    plan:{p10:Math.round(cur.p10[i]),median:Math.round(cur.p50[i]),p90:Math.round(cur.p90[i]),funded:+cur.funded[q].toFixed(3)}};});
+  const c=cur.prep.cost;
+  return JSON.stringify({schema:'transition-lens.v1',tax_year:2026,scenario:S.ui.scen,
+    persona:{name:P.name,age:P.age,retirement_age:P.retire,state:P.state,filing:P.filing,risk:P.risk,spend:P.spend,other_income:P.ssAmt,inflation:P.infl},
+    plan:{fund_option:['keep','proposed','low_cost_index','balanced'][d.mf],exchange_annuity:!!d.ann,roth_conversion_share:d.ira},
+    costs:{capital_gains_tax:Math.round(c.cg),exit_charges:Math.round(c.exit),transaction:Math.round(c.txn),annuity_exchange_tax:Math.round(c.annTax),roth_conversion_tax:Math.round(cur.det.convTax),advisory_fees_pv:Math.round(cur.det.advPV)},
+    checkpoints:cp,money_lasts_to_90:{current:+ci.success.toFixed(3),plan:+cur.success.toFixed(3)},
+    recommended:{fund_option:['keep','proposed','low_cost_index','balanced'][R.best.d.mf],exchange_annuity:!!R.best.d.ann,roth_conversion_share:R.best.d.ira}},null,2);
+}
+
+/* ---------- sheet mechanics, toast, events ---------- */
+let toastT=null;
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2200);}
+function openSheet(kind,secId){
+  lastFocus=document.activeElement;
+  S.ui.sheet=kind;
+  const sh=$('#sheet');
+  sh.innerHTML=kind==='summary'?summarySheet():assumpSheet();
+  sh.hidden=false;$('#scrim').hidden=false;document.documentElement.classList.add('lock');
+  requestAnimationFrame(()=>{
+    sh.classList.add('in');$('#scrim').classList.add('in');
+    if(secId){const s=$('#sec-'+secId);if(s){s.open=true;s.scrollIntoView({block:'start'});}}
+    const c=sh.querySelector('[data-close]');(c||sh).focus();
+  });
+}
+function closeSheet(){
+  const sh=$('#sheet');sh.classList.remove('in');$('#scrim').classList.remove('in');sh.hidden=true;$('#scrim').hidden=true;
+  document.documentElement.classList.remove('lock');S.ui.sheet=null;
+  if(lastFocus&&lastFocus.focus)lastFocus.focus();
+}
+function copyText(txt,okMsg){
+  const fb=()=>{const ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy');}catch(e){}ta.remove();toast(ok?okMsg:'Copy was blocked. Select the text and copy it by hand.');};
+  try{navigator.clipboard.writeText(txt).then(()=>toast(okMsg),fb);}catch(e){fb();}
+}
+function schedule(){
+  document.documentElement.classList.add('busy');$('#app').setAttribute('aria-busy','true');
+  clearTimeout(schedule.t);
+  schedule.t=setTimeout(()=>{compute();renderMain();refreshSheet();syncInputs();document.documentElement.classList.remove('busy');$('#app').setAttribute('aria-busy','false');},40);
+}
+function loadPreset(id){
+  S=buildState(id);SHkey='';firstDraw=true;compute();renderMain();
+}
+function init(){
+  const cb=$('#cbtn'),cl=$('#clist');
+  const openList=()=>{cl.hidden=false;cb.setAttribute('aria-expanded','true');(cl.querySelector('[aria-selected="true"]')||cl.firstElementChild).focus();};
+  const closeList=ret=>{cl.hidden=true;cb.setAttribute('aria-expanded','false');if(ret)cb.focus();};
+  const choose=id=>{closeList(true);if(S.ui.sheet)closeSheet();loadPreset(id);};
+  cb.addEventListener('click',()=>{cl.hidden?openList():closeList(true);});
+  cb.addEventListener('keydown',e=>{if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(cl.hidden)openList();}});
+  cl.addEventListener('click',e=>{const li=e.target.closest('li');if(li)choose(li.dataset.id);});
+  cl.addEventListener('keydown',e=>{
+    const it=[...cl.children],i=it.indexOf(document.activeElement);
+    if(e.key==='ArrowDown'){e.preventDefault();it[(i+1)%it.length].focus();}
+    else if(e.key==='ArrowUp'){e.preventDefault();it[(i-1+it.length)%it.length].focus();}
+    else if(e.key==='Enter'||e.key===' '){e.preventDefault();if(i>=0)choose(it[i].dataset.id);}
+    else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();closeList(true);}
+    else if(e.key==='Tab'){closeList(false);}
+  });
+  document.addEventListener('click',e=>{if(!cl.hidden&&!e.target.closest('#cswitch'))closeList(false);});
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('button,#scrim');if(!t)return;
+    if(t.id==='scrim'||t.hasAttribute('data-close')){closeSheet();return;}
+    const a=t.dataset.act;
+    if(t.dataset.age){S.ui.age=+t.dataset.age;renderMain();return;}
+    if(a==='open-assump')openSheet('assump');
+    else if(a==='open-summary')openSheet('summary');
+    else if(a==='how')openSheet('assump','method');
+    else if(a==='apply'){S.ui.dec=clone(R.best.d);pickCur();renderMain();toast('Plan updated');window.scrollTo(0,0);}
+    else if(a==='reset'){const id=S.pid;closeSheet();loadPreset(id);toast('Preset restored');}
+    else if(a==='copy-sum')copyText(summaryData().text,'Summary copied');
+    else if(a==='copy-json')copyText(resultsJSON(),'Results JSON copied');
+  });
+  document.addEventListener('keydown',e=>{
+    if(!S.ui.sheet)return;
+    if(e.key==='Escape'){closeSheet();return;}
+    if(e.key==='Tab'){
+      const f=[...$('#sheet').querySelectorAll('button,input,select,summary,textarea,[tabindex="0"]')].filter(x=>!x.disabled&&x.offsetParent!==null);
+      if(!f.length)return;
+      const first=f[0],last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+    }
+  });
+  document.addEventListener('toggle',e=>{const d=e.target;if(d.dataset&&d.dataset.acc){S.ui.open[d.dataset.acc]=d.open;if(d.dataset.acc==='stress'&&d.open)refreshStress();}},true);
+  document.addEventListener('input',e=>{const el=e.target;if(el.dataset&&el.dataset.agein)el.classList.toggle('on',el.value!=='');});
+  document.addEventListener('change',e=>{
+    const el=e.target;
+    if(el.dataset.dec){
+      const sel=`input[name="${el.name}"][value="${el.value}"]`;
+      S.ui.dec[el.dataset.dec]=+el.value;pickCur();renderMain();
+      const f=$(sel);if(f)f.focus();return;
+    }
+    if(el.dataset.agein){let v=Math.round(parseFloat(el.value));const P=S.persona;if(!isFinite(v)){S.ui.age=P.end;renderMain();return;}v=Math.max(P.age,Math.min(P.end,v));S.ui.age=v;renderMain();const f=$('#age-in');if(f)f.focus();return;}
+    if(el.dataset.scen){
+      const sel=`input[name="${el.name}"][value="${el.value}"]`;
+      S.ui.scen=el.value;compute();renderMain();const f=$(sel);if(f)f.focus();return;
+    }
+    const path=el.dataset.bind;if(!path)return;
+    let val;
+    if(el.type==='checkbox')val=el.checked;
+    else if(el.dataset.str||el.type==='text')val=el.value;
+    else{val=parseFloat(el.value);if(!isFinite(val)){el.value=get(S,path);return;}if(el.dataset.pct)val=val/100;}
+    setp(S,path,val);
+    if(path==='persona.state')S.persona.stateRate=STATES[val].r;
+    schedule();
+    if(path==='persona.state'||path==='persona.filing'||path==='persona.retire'||path==='persona.age'){
+      setTimeout(()=>{const s=$('#sec-ess'),t=$('#sec-tax');if(S.ui.sheet==='assump'){const st=$('#sheet [data-bind="persona.stateRate"]');if(st)st.value=+(S.persona.stateRate*100).toFixed(4);}},80);
+    }
+  });
+  let rt=null;window.addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(()=>{if(S&&!S.ui.sheet){const o=CHW;chartW();if(Math.abs(CHW-o)>30)renderMain();}},160);});
+  loadPreset('alex');
+}
+init();
+</script>
+</body>
+</html>
+
+</body></html>
